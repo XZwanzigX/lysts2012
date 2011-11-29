@@ -3,45 +3,58 @@
 <html>
 <head>
     <title>Lysts 2012 Competitor application</title>
+    <script type="text/javascript">
+        function activateSubmitButton() {
+            return document.theForm.firstName.value != "" &&
+                    document.theForm.lastName.value != "" &&
+                    document.theForm.address.value != "" &&
+                    document.theForm.city.value != "" &&
+                    document.theForm.state.value != "" &&
+                    document.theForm.zip.value != "" &&
+                    document.theForm.country.value != "" &&
+                    document.theForm.phone.value != "" &&
+                    document.theForm.email.value != "";
+        }
+    </script>
 </head>
 <body>
-    <form id="theForm">
+    <form name="theForm" action="appFormHandler.php" method="POST">
         <table class="applicationTable">
             <tr>
                 <td class="formLabel">First Name:</td>
-                <td class="formText"><input type="text" id="firstName"></td>
+                <td class="formText"><input type="text" name="firstName"></td>
             </tr>
             <tr>
                 <td class="formLabel">Last Name:</td>
-                <td class="formText"><input type="text" id="lastName"></td>
+                <td class="formText"><input type="text" name="lastName"></td>
             </tr>
             <tr>
                 <td class="formLabel">Address</td>
-                <td class="formText"><input type="text" id="address"></td>
+                <td class="formText"><input type="text" name="address"></td>
             </tr>
             <tr>
                 <td class="formLabel">City</td>
-                <td class="formText"><input type="text" id="city"></td>
+                <td class="formText"><input type="text" name="city"></td>
             </tr>
             <tr>
                 <td class="formLabel">State</td>
-                <td class="formText"><input type="text" id="state"> </td>
+                <td class="formText"><input type="text" name="state"> </td>
             </tr>
             <tr>
                 <td class="formLabel">Zip</td>
-                <td class="formText"><input type="text" id="zip"></td>
+                <td class="formText"><input type="text" name="zip"></td>
             </tr>
             <tr>
                 <td class="formLabel">Country</td>
-                <td class="formText"><input type="text" id="country"></td>
+                <td class="formText"><input type="text" name="country"></td>
             </tr>
             <tr>
                 <td class="formLabel">Phone</td>
-                <td class="formText"><input type="text" id="phone"></td>
+                <td class="formText"><input type="text" name="phone"></td>
             </tr>
             <tr>
                 <td class="formLabel">Email</td>
-                <td class="formText"><input type="text" id="email"></td>
+                <td class="formText"><input type="text" name="email"></td>
             </tr>
             <tr>
                 <td class="formLabel">Competing in:</td>
@@ -53,7 +66,7 @@
             </tr>
             <tr>
                 <td class="formLabel">Experience:</td>
-                <td><textarea rows="5" cols="80"/></td>
+                <td><textarea rows="5" cols="80"></textarea></td>
             </tr>
             <tr>
                 <td class="formLabel">Stalls needed:</td>
@@ -79,6 +92,43 @@
             </tr>
             <tr>
                 <td>Armour Photo</td>
+                <td><input type="file" name="armourPic"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Soft kit photo</td>
+                <td><input type="file" name="softKitPic"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Medium close-up portrait</td>
+                <td><input type="file" name="closeUpPic"/> </td>
+            </tr>
+            <tr>
+                <td class="formLabel">Coat of Arms</td>
+                <td><input type="file" name="armsPic"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Height</td>
+                <td><input type="text" name="height"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Weight</td>
+                <td><input type="text" name="weight"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Jousting since</td>
+                <td><input type="text" name="joustingSince"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Occupation</td>
+                <td><input type="text" name="occupation"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Motto and Translation (if needed)</td>
+                <td><input type="text" name="motto"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit Application" class="submitButton"/></td>
+                <td><input type="reset" value="Clear Form" class="resetButton"/></td>
             </tr>
         </table>
     </form>
