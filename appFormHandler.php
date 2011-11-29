@@ -38,13 +38,52 @@ function collectTextFields()
     return $message;
 }
 
+function collectFiles($name) {
+    $armourPic = $_FILES["armourPic"];
+    $softKitPic = $_FILES["softKitPic"];
+    $portraitPic = $_FILES["portraitPic"];
+    $arms = $_FILES["arms"];
+
+
+    $fileList = "Armour Pic: " . $armourPic["name"] . "<p>" .
+                "Soft Kit Pic: " . $softKitPic["name"] . "<p>" .
+                "Portrait: " . $portraitPic["name"] . "<p>" .
+                "Arms: " . $arms["name"];
+
+    moveFile($armourPic, $name);
+    moveFile($softKitPic, $name);
+    moveFile($portraitPic, $name);
+    moveFile($arms, $name);
+
+    return $fileList;
+}
+
+function moveFile($file, $name)
+{
+    $path = "attachments/" . basename($file["name"]);
+
+    if (move_uploaded_file($file["tmp_name"], $path)) {
+        echo "File move successful!";
+    } else {
+        echo "File fails at life!";
+    }
+}
+
+function getParticipantName() {
+    return $_POST["firstName"] . $_POST["lastName"];
+}
+
+$participantName = getParticipantName();
+$fileList = collectFiles($participantName);
+
+echo $fileList;
 $message = collectTextFields();
 
-if (mail("rsaathoff@potomacfusion.com", "blark", $message)) {
+/*if (mail("rsaathoff@potomacfusion.com", "blark", $message)) {
     echo "THAT WAS AWSUM.";
     echo $message;
 } else {
     echo "FAIL WHALE";
-}
+}*/
 ?>
  
