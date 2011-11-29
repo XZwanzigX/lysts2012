@@ -66,7 +66,7 @@ function insertDataInDb() {
            "experience, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, height, weight, started_jousting, occupation, motto_and_translation" .
             "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email',1,1,1, '$experience',1,'$bio','$armour', '$softKit','$portrait'," .
             "'$arms', $height,'$weight','$dateStartedJousting', '$occupation', '$motto','$zip";
-
+echo $sql . "\n";
     if (writeToDB($sql)) {
         emailApplicant($email);
         emailAppToOfficial();
