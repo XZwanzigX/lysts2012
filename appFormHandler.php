@@ -64,7 +64,7 @@ function insertDataInDb() {
 
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
            "experience, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, height, weight, started_jousting, occupation, motto_and_translation" .
-            "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email',1,1,1, '$experience',1,'$bio','$armour', '$softKit','$portrait'" .
+            "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email',1,1,1, '$experience',1,'$bio','$armour', '$softKit','$portrait'," .
             "'$arms', $height,'$weight','$dateStartedJousting', '$occupation', '$motto','$zip";
 
     if (writeToDB($sql)) {
