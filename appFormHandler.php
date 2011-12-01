@@ -38,6 +38,7 @@ function collectTextFields() {
 }
 
 function insertDataInDb() {
+    setupDbCon();
     $firstName = mysql_real_escape_string($_POST["firstName"]);
     $lastName = mysql_real_escape_string($_POST["lastName"]);
     $address = mysql_real_escape_string($_POST["address"]);
@@ -56,6 +57,11 @@ function insertDataInDb() {
     $occupation = mysql_real_escape_string($_POST["occupation"]);
     $motto = mysql_real_escape_string($_POST["motto"]);
 
+    $skillAtArms = isset($_POST['saa']);
+    $melee = isset($_POST['melee']);
+    $joust = isset($_POST['joust']);
+
+    $stalls = $_POST['stalls'];
     $pics = collectAndPrepareFiles();
     $armour = $pics['armour'];
     $softKit = $pics['softKit'];
@@ -63,10 +69,10 @@ function insertDataInDb() {
     $arms = $pics['arms'];
 
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
-           "experience, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, height, weight, started_jousting, occupation, motto_and_translation" .
-            "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email',1,1,1, '$experience',1,'$bio','$armour', '$softKit','$portrait'," .
-            "'$arms', $height,'$weight','$dateStartedJousting', '$occupation', '$motto','$zip";
-echo $sql . "\n";
+    "experience, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, height, weight, started_jousting, occupation, motto_and_translation," .
+    "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience','$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
+    "'$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip');";
+
     if (writeToDB($sql)) {
         emailApplicant($email);
         emailAppToOfficial();
@@ -76,17 +82,19 @@ echo $sql . "\n";
     }
 }
 
-function writeToDb($sql)
+function writeToDb($sql) {
+    return mysql_query($sql);
+}
+
+function setupDbCon()
 {
     $user = "lysts";
     $password = "lysts";
     $host = "localhost";
     $db = "lysts_dev";
 
-    mysql_connect($host, $user, $password) or die("Can not connect to database: ".mysql_error());
-    mysql_select_db($db) or die("Can not select the database: ".mysql_error());
-
-    return mysql_query($sql);
+    mysql_connect($host, $user, $password) or die("Can not connect to database: " . mysql_error());
+    mysql_select_db($db) or die("Can not select the database: " . mysql_error());
 }
 
 function emailAppToOfficial() {
@@ -121,7 +129,7 @@ function collectAndPrepareFiles() {
 }
 
 function prepareImageForDbInsert($file) {
-    if (/*isset($file) && */$file['size'] > 0) {
+    if ($file['size'] > 0) {
         $tmpFile = $file['tmp_name'];
         $fp = fopen($tmpFile, 'r');
         $data = fread($fp, filesize($tmpFile));
@@ -138,6 +146,64 @@ function getParticipantName() {
     return $_POST["firstName"] . $_POST["lastName"];
 }
 
+function validateTextFields() {
+    foreach ($_POST as $key => $value) {
+        if ($key == "armourPic" || $key == "softKitPic" || $key == "closeUpPic" || $key == "armsPic") {
+            //Do nothing
+        } else if ($key == "weight") {
+            if (!preg_match('/\d{3}/', $value)) {
+                 die("Value specified for $key is not valid");
+            }
+        } else if ($key == "phone") {
+            if (!preg_match('/\(\d{3}\) \d{3}-\d{4}/', $value)) {
+                die("Phone number must be in the form (XXX) XXX-XXXX");
+            }
+        } else if ($key == "joustingSince") {
+            if (!preg_match('/\d{4}/', $value)) {
+                die("Invalid year sent for jousting since");
+            }
+        } else if ($key == "saa" || $key == "melee" || $key == "joust") {
+            //Do nothing
+        } else if ($key == "email") {
+            if (!preg_match('/\S@\S/', $value)) {
+                die("Invalid email");
+            }
+        } else if ($key == "height") {
+            if (!preg_match('/\d{1}\'\d{2}\"/', $value)) {
+                die("Height must be specified in feet and inches.");
+            }
+        }
+    }
+}
+
+function ensureACompetitionBoxIsChecked() {
+    if (!isset($_POST['saa']) && !isset($_POST['melee']) && !isset($_POST['joust'])) {
+        die("Please select at least one event to compete in.");
+    }
+}
+
+function validateFiles() {
+    foreach ($_FILES as $file) {
+        validateFile($file);
+    }
+}
+
+function validateFile($file) {
+    $fileName = $file['name'];
+    $mimeType = $file['type'];
+
+    if (!preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif|bmp))$)/', $fileName)) {
+        die("Invalid image sent");
+    }
+
+    if (!preg_match('/image\/(jpg|jpeg|gif|png)/', $mimeType)) {
+        die("Image is not a jpg, gif or png.");
+    }
+}
+
+validateTextFields();
+ensureACompetitionBoxIsChecked();
+validateFiles();
 insertDataInDb();
 
 ?>
