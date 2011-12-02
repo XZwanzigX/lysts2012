@@ -192,7 +192,7 @@ function validateFile($file) {
     $fileName = $file['name'];
     $mimeType = $file['type'];
 
-    if (!preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif|bmp))$)/', $fileName)) {
+    if (!preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif))$)/', $fileName)) {
         die("Invalid image sent");
     }
 
