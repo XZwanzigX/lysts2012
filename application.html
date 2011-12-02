@@ -3,51 +3,52 @@
 <html>
 <head>
     <title>Lysts 2012 Competitor application</title>
-    <script type="text/javascript" src="js/formValidation.js">
+    <script type="text/javascript" src="js/formValidation.js"></script>
+    <script type="text/javascript" src="js/formControls.js"></script>
 
-    </script>
 </head>
 <body>
     <form id="theForm" action="appFormHandler.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
+        <input type="checkbox" name="returningCompetitor" onclick="alreadyHaveInfo();"/> Please use my info from last year.
         <table class="applicationTable">
             <tr>
-                <td class="formLabel">First Name:</td>
+                <td class="formLabel">First Name:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="firstName" id="First Name"></td>
             </tr>
             <tr>
-                <td class="formLabel">Last Name:</td>
+                <td class="formLabel">Last Name:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="lastName" id="Last Name"></td>
             </tr>
             <tr>
-                <td class="formLabel">Address</td>
+                <td class="formLabel">Address:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="address" id="Address"></td>
             </tr>
             <tr>
-                <td class="formLabel">City</td>
+                <td class="formLabel">City:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="city" id="City"></td>
             </tr>
             <tr>
-                <td class="formLabel">State</td>
+                <td class="formLabel">State:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="state" id="State/Province"> </td>
             </tr>
             <tr>
-                <td class="formLabel">Zip</td>
+                <td class="formLabel">Zip:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="zip" id="Zip/Post Code"></td>
             </tr>
             <tr>
-                <td class="formLabel">Country</td>
+                <td class="formLabel">Country:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="country" id="Country"></td>
             </tr>
             <tr>
-                <td class="formLabel">Phone</td>
+                <td class="formLabel">Phone:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="phone" id="Phone Number"></td>
             </tr>
             <tr>
-                <td class="formLabel">Email</td>
+                <td class="formLabel">Email:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="email" id="Email"></td>
             </tr>
             <tr>
-                <td class="formLabel">Competing in:</td>
+                <td class="formLabel">Competing in:<em class="required">*</em></td>
                 <td class="formText">
                     <input type="checkbox" name="saa" id="Skill At Arms" value="1"/> Skill At Arms<br>
                     <input type="checkbox" name="melee" id="Melee a Cheval" value="1"/> Melee a Cheval<br>
@@ -55,11 +56,11 @@
                 </td>
             </tr>
             <tr>
-                <td class="formLabel">Experience:</td>
+                <td class="formLabel">Experience:<em class="required">*</em></td>
                 <td><textarea rows="5" cols="80" name="experience" id="Experience"></textarea></td>
             </tr>
             <tr>
-                <td class="formLabel">Stalls needed:</td>
+                <td class="formLabel">Stalls needed:<em class="required">*</em></td>
                 <td><select name="stalls" id="Stalls Needed">
                     <option>0</option>
                     <option>1</option>
@@ -75,50 +76,48 @@
                 </select> </td>
             </tr>
             <tr>
-                <td class="formLabel">Bio for publication</td>
-                <td><textarea rows="4" cols="80" name="bio" id="Bio">
-
-                </textarea></td>
+                <td class="formLabel">Bio for publication:<em class="required">*</em></td>
+                <td><textarea rows="4" cols="80" name="bio" id="Bio"></textarea></td>
             </tr>
             <tr>
-                <td>Armour Photo</td>
+                <td>Armour Photo:<em class="required">*</em></td>
                 <td><input type="file" name="armourPic" id="Armour Picture"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Soft kit photo</td>
+                <td class="formLabel">Soft kit Photo:<em class="required">*</em></td>
                 <td><input type="file" name="softKitPic" id="Soft Kit Photo"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Medium close-up portrait</td>
+                <td class="formLabel">Medium close-up portrait:<em class="required">*</em></td>
                 <td><input type="file" name="closeUpPic" id="Close-up Portrait"/> </td>
             </tr>
             <tr>
-                <td class="formLabel">Coat of Arms</td>
+                <td class="formLabel">Coat of Arms:<em class="required">*</em></td>
                 <td><input type="file" name="armsPic" id="Coat of Arms"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Height</td>
+                <td class="formLabel">Height:<em class="required">*</em></td>
                 <td><input type="text" name="height" id="Height"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Weight</td>
+                <td class="formLabel">Weight (in pounds):<em class="required">*</em></td>
                 <td><input type="text" name="weight" id="Weight"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Jousting since</td>
+                <td class="formLabel">Jousting Since:<em class="required">*</em></td>
                 <td><input type="text" name="joustingSince" id="Started Jousting"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Occupation</td>
+                <td class="formLabel">Occupation:<em class="required">*</em></td>
                 <td><input type="text" name="occupation" id="Occupation"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Motto and Translation (if needed)</td>
+                <td class="formLabel">Motto and Translation (if needed):<em class="required">*</em></td>
                 <td><input type="text" name="motto" id="Motto and Translation"/></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Submit Application" class="submitButton"/></td>
-                <td><input type="reset" value="Clear Form" class="resetButton"/></td>
+                <td><input type="reset" value="Clear Form" class="resetButton" onclick="clearForm();"/></td>
             </tr>
         </table>
     </form>
