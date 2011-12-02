@@ -6,7 +6,7 @@ function validateTextFields() {
     var emailRegex = /\S@\S/;
     var heightRegex = /\d{1}\'\d{2}\"/;
 
-    var elements = document.theForm.elements;
+    var elements = document.getElementById('theForm').elements;
 
     for (var i = 0; i < elements.length; ++i) {
         var e = elements[i];
@@ -33,10 +33,10 @@ function validateFiles() {
     var validationErrors = '';
     var fileRegEx = /([^\s]+\.(jpg|jpeg|png|gif)$)/;
 
-    var elements = document.theForm.elements;
+    var elements = document.getElementById('theForm').elements;
 
     for(var i = 0; i < elements.length; ++i) {
-        if(elements[i].id.match(/armourPic|softKitPic|closeUpPic|armsPic/) && !elements[i].value.match(fileRegEx)) {
+        if(elements[i].name.match(/armourPic|softKitPic|closeUpPic|armsPic/) && !elements[i].value.match(fileRegEx)) {
             validationErrors += 'Please upload an image for '+ elements[i].id + "\n";
         }
     }
