@@ -46,14 +46,14 @@ function insertDataInDb() {
     $state = mysql_real_escape_string($_POST["state"]);
     $zip = mysql_real_escape_string($_POST["zip"]);
     $country = mysql_real_escape_string($_POST["country"]);
-    $phone = mysql_real_escape_string($_POST["phone"]);
+    $phone = subDefaultIfUsingLastYearsInfo($_POST["phone"], 'phone');
     $email = mysql_real_escape_string($_POST["email"]);
     $experience = mysql_real_escape_string($_POST["experience"]);
     $bio = mysql_real_escape_string($_POST["bio"]);
 
-    $height = mysql_real_escape_string($_POST["height"]);
-    $weight = mysql_real_escape_string($_POST["weight"]);
-    $dateStartedJousting = mysql_real_escape_string($_POST["joustingSince"]);
+    $height = subDefaultIfUsingLastYearsInfo($_POST['height'], 'height');
+    $weight = subDefaultIfUsingLastYearsInfo($_POST["weight"], 'weight');
+    $dateStartedJousting = subDefaultIfUsingLastYearsInfo($_POST["joustingSince"], 'joustingSince');
     $occupation = mysql_real_escape_string($_POST["occupation"]);
     $motto = mysql_real_escape_string($_POST["motto"]);
 
@@ -80,6 +80,22 @@ function insertDataInDb() {
     } else {
         die("Sorry, unable to process application.  Please try again.");
     }
+}
+
+function subDefaultIfUsingLastYearsInfo($key, $value) {
+    $isDefaultValue = $value == 'Please use 2011\'s info.';
+
+    if ($isDefaultValue && $key == 'weight') {
+        return 0;
+    } else if (!$isDefaultValue && $key == 'height') {
+        return '';
+    } else if ($isDefaultValue && $key == 'joustingSince') {
+        return 0;
+    } else if ($isDefaultValue && $key == 'phone') {
+        return '';
+    }
+
+    return $value;
 }
 
 function writeToDb($sql) {
@@ -137,6 +153,8 @@ function prepareImageForDbInsert($file) {
         fclose($fp);
 
         return $data;
+    } else if(useLastYearInfo()) {
+        return '';
     } else {
         die("Empty file made it to db insert prep.");
     }
@@ -150,25 +168,25 @@ function validateTextFields() {
     foreach ($_POST as $key => $value) {
         if ($key == "armourPic" || $key == "softKitPic" || $key == "closeUpPic" || $key == "armsPic") {
             //Do nothing
-        } else if ($key == "weight") {
+        } else if (!useLastYearInfo() && $key == "weight") {
             if (!preg_match('/\d{3}/', $value)) {
                  die("Value specified for $key is not valid");
             }
-        } else if ($key == "phone") {
+        } else if (!useLastYearInfo() && $key == "phone") {
             if (!preg_match('/\(\d{3}\) \d{3}-\d{4}/', $value)) {
                 die("Phone number must be in the form (XXX) XXX-XXXX");
             }
-        } else if ($key == "joustingSince") {
+        } else if (!useLastYearInfo() &&  $key == "joustingSince") {
             if (!preg_match('/\d{4}/', $value)) {
                 die("Invalid year sent for jousting since");
             }
-        } else if ($key == "saa" || $key == "melee" || $key == "joust") {
+        } else if (!useLastYearInfo() && ($key == "saa" || $key == "melee" || $key == "joust")) {
             //Do nothing
-        } else if ($key == "email") {
+        } else if (!useLastYearInfo() && $key == "email") {
             if (!preg_match('/\S@\S/', $value)) {
                 die("Invalid email");
             }
-        } else if ($key == "height") {
+        } else if (!useLastYearInfo() && $key == "height") {
             if (!preg_match('/\d{1}\'\d{2}\"/', $value)) {
                 die("Height must be specified in feet and inches.");
             }
@@ -192,13 +210,17 @@ function validateFile($file) {
     $fileName = $file['name'];
     $mimeType = $file['type'];
 
-    if (!preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif))$)/', $fileName)) {
+    if (!useLastYearInfo() && !preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif))$)/', $fileName)) {
         die("Invalid image sent");
     }
 
-    if (!preg_match('/image\/(jpg|jpeg|gif|png)/', $mimeType)) {
+    if (!useLastYearInfo() && !preg_match('/image\/(jpg|jpeg|gif|png)/', $mimeType)) {
         die("Image is not a jpg, gif or png.");
     }
+}
+
+function useLastYearInfo() {
+    return $_POST['returningCompetitor'];
 }
 
 validateTextFields();

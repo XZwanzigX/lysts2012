@@ -25,7 +25,7 @@ function alreadyHaveInfo() {
         var name = elements[i].name;
 
         if(name == 'address' || name == 'city' || name== 'state' || name == 'zip' || name== 'country'
-            || name == 'phone' || name == 'email' || name == 'bio' || name =='height' || name == 'weight'
+            || name == 'phone' || name == 'bio' || name =='height' || name == 'weight'
             || name == 'joustingSince' || name == 'occupation' || name == 'motto') {
             elements[i].value = alreadyHave;
         }

@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="theForm" action="appFormHandler.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
-        <input type="checkbox" name="returningCompetitor" onclick="alreadyHaveInfo();"/> Please use my info from last year.
+
         <table class="applicationTable">
             <tr>
                 <td class="formLabel">First Name:<em class="required">*</em></td>
@@ -18,6 +18,10 @@
             <tr>
                 <td class="formLabel">Last Name:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="lastName" id="Last Name"></td>
+            </tr>
+            <tr>
+                <td class="formLabel" colspan="2"><input type="checkbox" name="returningCompetitor" onclick="alreadyHaveInfo();"/> Please use last year's info.
+                    <br>If any information we already have has changed, or you want to supply a more up-to-date item, just supply a different value in the appropriate field.</td>
             </tr>
             <tr>
                 <td class="formLabel">Address:<em class="required">*</em></td>

@@ -7,20 +7,23 @@ function validateTextFields() {
     var heightRegex = /\d{1}\'\d{2}\"/;
 
     var elements = document.getElementById('theForm').elements;
+    var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
 
     for (var i = 0; i < elements.length; ++i) {
         var e = elements[i];
-        if (e.name == 'weight' && !e.value.match(weightRegex)) {
+        var validateItem = useLastYearInfo && (e.value != 'Please use 2011\'s info.');
+
+        if (validateItem && e.name == 'weight' && !e.value.match(weightRegex) ) {
             validationErrors = validationErrors + "Please enter a valid value for Weight.\n";
-        } else if (e.name == 'phone' && !e.value.match(phoneRegex)) {
+        } else if (validateItem && e.name == 'phone' && !e.value.match(phoneRegex)) {
             validationErrors += "Please enter a valid Phone number\n";
-        } else if (e.name == 'joustingSince' && !e.value.match(joustSinceRegex)) {
+        } else if (validateItem && e.name == 'joustingSince' && !e.value.match(joustSinceRegex)) {
             validationErrors += "Please enter a 4 digit year when you started jousting\n";
         } else if (e.name == 'email' && !e.value.match(emailRegex)) {
             validationErrors += "Please enter a valid email so that we can get in touch with you!\n";
-        } else if (e.name == 'height' && !e.value.match(heightRegex)) {
+        } else if (validateItem && e.name == 'height' && !e.value.match(heightRegex)) {
             validationErrors += "Please enter your height in the form X\'X\"\n";
-        } else if ((e.name != 'softKitPic' && e.name != 'armsPic' && e.name !='closeUpPic' && e.name != 'armourPic') && !e.value.match(/\S/)) {
+        } else if (validateItem && (e.name != 'softKitPic' && e.name != 'armsPic' && e.name !='closeUpPic' && e.name != 'armourPic') && !e.value.match(/\S/)) {
             validationErrors += "Please enter a value for " + e.id + "\n";
         }
 
@@ -34,9 +37,12 @@ function validateFiles() {
     var fileRegEx = /([^\s]+\.(jpg|jpeg|png|gif)$)/;
 
     var elements = document.getElementById('theForm').elements;
+    var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
 
     for(var i = 0; i < elements.length; ++i) {
-        if(elements[i].name.match(/armourPic|softKitPic|closeUpPic|armsPic/) && !elements[i].value.match(fileRegEx)) {
+        var validateItem = useLastYearInfo && (elements[i].value  != '');
+
+        if(validateItem && elements[i].name.match(/armourPic|softKitPic|closeUpPic|armsPic/) && !elements[i].value.match(fileRegEx)) {
             validationErrors += 'Please upload an image for '+ elements[i].id + "\n";
         }
     }
