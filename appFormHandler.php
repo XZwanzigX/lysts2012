@@ -46,14 +46,14 @@ function insertDataInDb() {
     $state = mysql_real_escape_string($_POST["state"]);
     $zip = mysql_real_escape_string($_POST["zip"]);
     $country = mysql_real_escape_string($_POST["country"]);
-    $phone = subDefaultIfUsingLastYearsInfo($_POST["phone"], 'phone');
+    $phone = subDefaultIfUsingLastYearsInfo('phone', $_POST["phone"]);
     $email = mysql_real_escape_string($_POST["email"]);
     $experience = mysql_real_escape_string($_POST["experience"]);
     $bio = mysql_real_escape_string($_POST["bio"]);
 
-    $height = subDefaultIfUsingLastYearsInfo($_POST['height'], 'height');
-    $weight = subDefaultIfUsingLastYearsInfo($_POST["weight"], 'weight');
-    $dateStartedJousting = subDefaultIfUsingLastYearsInfo($_POST["joustingSince"], 'joustingSince');
+    $height = subDefaultIfUsingLastYearsInfo('height', $_POST['height']);
+    $weight = subDefaultIfUsingLastYearsInfo('weight', $_POST["weight"]);
+    $dateStartedJousting = subDefaultIfUsingLastYearsInfo('joustingSince', $_POST["joustingSince"]);
     $occupation = mysql_real_escape_string($_POST["occupation"]);
     $motto = mysql_real_escape_string($_POST["motto"]);
 
@@ -87,7 +87,7 @@ function subDefaultIfUsingLastYearsInfo($key, $value) {
 
     if ($isDefaultValue && $key == 'weight') {
         return 0;
-    } else if (!$isDefaultValue && $key == 'height') {
+    } else if ($isDefaultValue && $key == 'height') {
         return '';
     } else if ($isDefaultValue && $key == 'joustingSince') {
         return 0;
@@ -95,7 +95,7 @@ function subDefaultIfUsingLastYearsInfo($key, $value) {
         return '';
     }
 
-    return $value;
+    return mysql_real_escape_string($value);
 }
 
 function writeToDb($sql) {
@@ -171,10 +171,6 @@ function validateTextFields() {
         } else if (!useLastYearInfo() && $key == "weight") {
             if (!preg_match('/\d{3}/', $value)) {
                  die("Value specified for $key is not valid");
-            }
-        } else if (!useLastYearInfo() && $key == "phone") {
-            if (!preg_match('/\(\d{3}\) \d{3}-\d{4}/', $value)) {
-                die("Phone number must be in the form (XXX) XXX-XXXX");
             }
         } else if (!useLastYearInfo() &&  $key == "joustingSince") {
             if (!preg_match('/\d{4}/', $value)) {

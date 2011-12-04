@@ -15,8 +15,6 @@ function validateTextFields() {
 
         if (validateItem && e.name == 'weight' && !e.value.match(weightRegex) ) {
             validationErrors = validationErrors + "Please enter a valid value for Weight.\n";
-        } else if (validateItem && e.name == 'phone' && !e.value.match(phoneRegex)) {
-            validationErrors += "Please enter a valid Phone number\n";
         } else if (validateItem && e.name == 'joustingSince' && !e.value.match(joustSinceRegex)) {
             validationErrors += "Please enter a 4 digit year when you started jousting\n";
         } else if (e.name == 'email' && !e.value.match(emailRegex)) {
@@ -30,6 +28,25 @@ function validateTextFields() {
     }
 
     return validationErrors;
+}
+
+function validatePhoneNumber() {
+    var PNF = i18n.phonenumbers.PhoneNumberFormat;
+
+    var phone = document.getElementsByName('phone')[0];
+    var phoneNumber = phone.value;
+    var regionCode = document.getElementsByName('country')[0].value;
+
+    var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
+    var number = phoneUtil.parseAndKeepRawInput(phoneNumber, regionCode);
+
+    var isValid = phoneUtil.isValidNumberForRegion(number, regionCode);
+
+    if (isValid) {
+        phone.value = phoneUtil.format(number, PNF.INTERNATIONAL);
+    }
+
+    return isValid ? '' : "Please enter a valid phone number for " + regionCode;
 }
 
 function validateFiles() {
@@ -65,6 +82,7 @@ function validateForm() {
     var validationErrors = "";
 
     validationErrors += validateTextFields()
+                        + validatePhoneNumber()
                         + ensureEventIsSelected()
                         + validateFiles();
 
