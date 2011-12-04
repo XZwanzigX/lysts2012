@@ -11,7 +11,7 @@ function validateTextFields() {
 
     for (var i = 0; i < elements.length; ++i) {
         var e = elements[i];
-        var validateItem = useLastYearInfo && (e.value != 'Please use 2011\'s info.');
+        var validateItem = useLastYearInfo ? (e.value != 'Please use 2011\'s info.') : true;
 
         if (validateItem && e.name == 'weight' && !e.value.match(weightRegex) ) {
             validationErrors = validationErrors + "Please enter a valid value for Weight.\n";
@@ -31,6 +31,7 @@ function validateTextFields() {
 }
 
 function validatePhoneNumber() {
+    try {
     var PNF = i18n.phonenumbers.PhoneNumberFormat;
 
     var phone = document.getElementsByName('phone')[0];
@@ -38,6 +39,7 @@ function validatePhoneNumber() {
     var regionCode = document.getElementsByName('country')[0].value;
 
     var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
+
     var number = phoneUtil.parseAndKeepRawInput(phoneNumber, regionCode);
 
     var isValid = phoneUtil.isValidNumberForRegion(number, regionCode);
@@ -47,6 +49,9 @@ function validatePhoneNumber() {
     }
 
     return isValid ? '' : "Please enter a valid phone number for " + regionCode;
+    } catch (e){
+        return 'Please enter a valid phone number.\n';
+    }
 }
 
 function validateFiles() {
