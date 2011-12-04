@@ -4,7 +4,7 @@ function validateTextFields() {
     var phoneRegex = /\(\d{3}\) \d{3}-\d{4}/;
     var joustSinceRegex = /\d{4}/;
     var emailRegex = /\S@\S/;
-    var heightRegex = /\d{1}\'\d{2}\"/;
+    var heightRegex = /\d{1}\'\d+\"/;
 
     var elements = document.getElementById('theForm').elements;
     var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
