@@ -32,23 +32,25 @@ function validateTextFields() {
 
 function validatePhoneNumber() {
     try {
-    var PNF = i18n.phonenumbers.PhoneNumberFormat;
+        var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
+        var phone = document.getElementsByName('phone')[0];
+        var validatePhone = useLastYearInfo ? phone.value != 'Please use 2011\'s info.' : true;
 
-    var phone = document.getElementsByName('phone')[0];
-    var phoneNumber = phone.value;
-    var regionCode = document.getElementsByName('country')[0].value;
+        if(!validatePhone) { return ''; }
 
-    var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
+        var PNF = i18n.phonenumbers.PhoneNumberFormat;
+        var phoneNumber = phone.value;
+        var regionCode = document.getElementsByName('country')[0].value;
 
-    var number = phoneUtil.parseAndKeepRawInput(phoneNumber, regionCode);
+        var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
+        var number = phoneUtil.parseAndKeepRawInput(phoneNumber, regionCode);
+        var isValid = phoneUtil.isValidNumberForRegion(number, regionCode);
 
-    var isValid = phoneUtil.isValidNumberForRegion(number, regionCode);
+        if (isValid) {
+            phone.value = phoneUtil.format(number, PNF.INTERNATIONAL);
+        }
 
-    if (isValid) {
-        phone.value = phoneUtil.format(number, PNF.INTERNATIONAL);
-    }
-
-    return isValid ? '' : "Please enter a valid phone number for " + regionCode;
+        return isValid ? '' : "Please enter a valid phone number for " + regionCode;
     } catch (e){
         return 'Please enter a valid phone number.\n';
     }
@@ -62,7 +64,7 @@ function validateFiles() {
     var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
 
     for(var i = 0; i < elements.length; ++i) {
-        var validateItem = useLastYearInfo && (elements[i].value  != '');
+        var validateItem = useLastYearInfo ? (elements[i].value  != '') : true;
 
         if(validateItem && elements[i].name.match(/armourPic|softKitPic|closeUpPic|armsPic/) && !elements[i].value.match(fileRegEx)) {
             validationErrors += 'Please upload an image for '+ elements[i].id + "\n";
