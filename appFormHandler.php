@@ -183,7 +183,7 @@ function validateTextFields() {
                 die("Invalid email");
             }
         } else if (!useLastYearInfo() && $key == "height") {
-            if (!preg_match('/\d{1}\'\d{2}\"/', $value)) {
+            if (!preg_match('/\d{1}\\\'\d+\\"/', $value)) {
                 die("Height must be specified in feet and inches.");
             }
         }
