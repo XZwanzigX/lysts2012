@@ -1,4 +1,6 @@
 .required {color:#ff0000; size:12pt;}
 .formLabel{font-family: arial,helvetica,sans-serif; size:12pt;vertical-align: top;}
+.formLabelCenter{font-family: arial,helvetica,sans-serif; size:12pt;vertical-align: top; text-align: center;}
 .bodyText{font-family:arial,helvetica,sans-serif; size:12pt;}
 .link{font-family: arial,helvetica,sans-serif; size:12pt; text-decoration: none;}
+.applicationTable{margin: 0 auto;}
