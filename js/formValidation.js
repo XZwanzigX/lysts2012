@@ -1,7 +1,6 @@
 function validateTextFields() {
     var validationErrors = "";
     var weightRegex = /\d{3}/;
-    var phoneRegex = /\(\d{3}\) \d{3}-\d{4}/;
     var joustSinceRegex = /\d{4}/;
     var emailRegex = /\S@\S/;
     var heightRegex = /\d{1}\'\d+\"/;
@@ -21,7 +20,7 @@ function validateTextFields() {
             validationErrors += "Please enter a valid email so that we can get in touch with you!\n";
         } else if (validateItem && e.name == 'height' && !e.value.match(heightRegex)) {
             validationErrors += "Please enter your height in the form X\'X\"\n";
-        } else if (validateItem && (e.name != 'softKitPic' && e.name != 'armsPic' && e.name !='closeUpPic' && e.name != 'armourPic') && !e.value.match(/\S/)) {
+        } else if (validateItem && (e.name != 'softKitPic' && e.name != 'armsPic' && e.name !='closeUpPic' && e.name != 'armourPic' && e.name != 'themeMusic') && !e.value.match(/\S/)) {
             validationErrors += "Please enter a value for " + e.id + "\n";
         }
 
@@ -59,6 +58,7 @@ function validatePhoneNumber() {
 function validateFiles() {
     var validationErrors = '';
     var fileRegEx = /([^\s]+\.(jpg|jpeg|png|gif)$)/;
+    var mp3Regex = /([^\s]+\.mp3$)/;
 
     var elements = document.getElementById('theForm').elements;
     var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
@@ -68,6 +68,8 @@ function validateFiles() {
 
         if(validateItem && elements[i].name.match(/armourPic|softKitPic|closeUpPic|armsPic/) && !elements[i].value.match(fileRegEx)) {
             validationErrors += 'Please upload an image for '+ elements[i].id + "\n";
+        } else if (elements[i].name == 'themeMusic' && !elements[i].value.match(mp3Regex)) {
+            validationErrors += 'Please upload an mp3 for ' + elements[i].id + "\n";
         }
     }
 
@@ -87,6 +89,12 @@ function ensureEventIsSelected() {
 
 function validateForm() {
     var validationErrors = "";
+
+    if (!document.getElementsByName('terms')[0].checked) {
+        validationErrors += 'You must agree to the rules before your application can be submitted.';
+        alert(validationErrors);
+        return false;
+    }
 
     validationErrors += validateTextFields()
                         + validatePhoneNumber()

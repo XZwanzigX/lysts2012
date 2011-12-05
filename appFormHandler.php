@@ -62,16 +62,17 @@ function insertDataInDb() {
     $joust = isset($_POST['joust']);
 
     $stalls = $_POST['stalls'];
-    $pics = collectAndPrepareFiles();
-    $armour = $pics['armour'];
-    $softKit = $pics['softKit'];
-    $portrait = $pics['portrait'];
-    $arms = $pics['arms'];
+    $files = collectAndPrepareFiles();
+    $armour = $files['armour'];
+    $softKit = $files['softKit'];
+    $portrait = $files['portrait'];
+    $arms = $files['arms'];
+    $themeMusic =  $files['themeMusic'];
 
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
-    "experience, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, height, weight, started_jousting, occupation, motto_and_translation," .
+    "experience, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, theme_music, height, weight, started_jousting, occupation, motto_and_translation," .
     "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience','$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
-    "'$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip');";
+    "'$themeMusic','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip');";
 
     if (writeToDB($sql)) {
         emailApplicant($email);
@@ -135,16 +136,18 @@ function collectAndPrepareFiles() {
     $softKitPic = $_FILES["softKitPic"];
     $portraitPic = $_FILES["closeUpPic"];
     $arms = $_FILES["armsPic"];
+    $theme = $_FILES['themeMusic'];
 
-    $pics['armour'] = prepareImageForDbInsert($armourPic);
-    $pics['softKit'] = prepareImageForDbInsert($softKitPic);
-    $pics['portrait'] = prepareImageForDbInsert($portraitPic);
-    $pics['arms'] = prepareImageForDbInsert($arms);
+    $files['armour'] = prepareImageForDbInsert($armourPic, true);
+    $files['softKit'] = prepareImageForDbInsert($softKitPic, true);
+    $files['portrait'] = prepareImageForDbInsert($portraitPic, true);
+    $files['arms'] = prepareImageForDbInsert($arms, true);
+    $files['themeMusic'] = prepareImageForDbInsert($theme, false);
 
-    return $pics;
+    return $files;
 }
 
-function prepareImageForDbInsert($file) {
+function prepareImageForDbInsert($file, $isPic) {
     if ($file['size'] > 0) {
         $tmpFile = $file['tmp_name'];
         $fp = fopen($tmpFile, 'r');
@@ -153,7 +156,7 @@ function prepareImageForDbInsert($file) {
         fclose($fp);
 
         return $data;
-    } else if(useLastYearInfo()) {
+    } else if(useLastYearInfo() && $isPic) {
         return '';
     } else {
         die("Empty file made it to db insert prep.");
@@ -182,11 +185,11 @@ function validateTextFields() {
             if (!preg_match('/\S@\S/', $value)) {
                 die("Invalid email");
             }
-        } else if (!useLastYearInfo() && $key == "height") {
+        }/* else if (!useLastYearInfo() && $key == "height") {
             if (!preg_match('/\d{1}\\\'\d+\\"/', $value)) {
                 die("Height must be specified in feet and inches.");
             }
-        }
+        }*/
     }
 }
 
@@ -197,22 +200,24 @@ function ensureACompetitionBoxIsChecked() {
 }
 
 function validateFiles() {
-    foreach ($_FILES as $file) {
-        validateFile($file);
+    foreach ($_FILES as $key => $file) {
+        validateFile($file, $key);
     }
 }
 
-function validateFile($file) {
+function validateFile($file, $key) {
     $fileName = $file['name'];
     $mimeType = $file['type'];
+    $validateFile  = useLastYearInfo() ? $key == 'themeMusic' : true;
 
-    if (!useLastYearInfo() && !preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif))$)/', $fileName)) {
-        die("Invalid image sent");
+    if ($validateFile && !preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif|mp3))$)/', $fileName)) {
+        die("Invalid file sent");
     }
 
-    if (!useLastYearInfo() && !preg_match('/image\/(jpg|jpeg|gif|png)/', $mimeType)) {
-        die("Image is not a jpg, gif or png.");
+    if ($validateFile && (!preg_match('/image\/(jpg|jpeg|gif|png)/', $mimeType) && !preg_match('/audio\/(mp3|mpeg3)/', $mimeType))) {
+        die("Invalid file MIME type.  We can only support jpg, gif, png or mp3.");
     }
+
 }
 
 function useLastYearInfo() {

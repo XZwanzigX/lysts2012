@@ -363,6 +363,10 @@
                 <td><input type="file" name="armsPic" id="Coat of Arms"/></td>
             </tr>
             <tr>
+                <td class="formLabel">Theme music (30s mp3)<em class="required">*</em></td>
+                <td><input type="file" name="themeMusic" id="Theme Music"/></td>
+            </tr>
+            <tr>
                 <td class="formLabel">Height:<em class="required">*</em></td>
                 <td><input type="text" name="height" id="Height"/></td>
             </tr>
@@ -383,10 +387,18 @@
                 <td><input type="text" name="motto" id="Motto and Translation"/></td>
             </tr>
             <tr>
+                <td colspan="2">
+                    I have read the <a href="http://www.aplaisance.com/Tournament_Rules.html" target="_new" class="link">rules</a> and agree to abide by them.</p>
+                    <input type="radio" name="terms" value="accept"/>  Accept<br>
+                    <input type="radio" name="terms" value="decline"/> Decline
+                </td>
+            </tr>
+            <tr>
                 <td><input type="submit" value="Submit Application" class="submitButton"/></td>
                 <td><input type="reset" value="Clear Form" class="resetButton" onclick="clearForm();"/></td>
             </tr>
         </table>
+        <p>If you're having trouble with the application, please email <a href="mailto:webmaster@aplaisance.com">webmaster@aplaisance.com</a>.</p>
     </form>
 </body>
 </html>
