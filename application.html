@@ -18,7 +18,7 @@
 
     <script type="text/javascript" src="js/formValidation.js"></script>
     <script type="text/javascript" src="js/formControls.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 </head>
 <body>
     <form id="theForm" action="appFormHandler.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
@@ -327,7 +327,7 @@
                 <td><textarea rows="5" cols="80" name="experience" id="Experience"></textarea></td>
             </tr>
             <tr>
-                <td class="formLabel" colspan="2"><input type="checkbox" name="ijlMember"/> <a href="http://users.skynet.be/hackamores/IJL/IJL-application.pdf" target="_new" class="textLink">International Jousting League</a> member.</td>
+                <td class="formLabel" colspan="2"><input type="checkbox" name="ijlMember"/> <a href="http://users.skynet.be/hackamores/IJL/IJL-application.pdf" target="_new" class="link">International Jousting League</a> member.</td>
             </tr>
             <tr>
                 <td class="formLabel">Stalls needed:<em class="required">*</em></td>
@@ -391,7 +391,7 @@
                 <td><input type="text" name="motto" id="Motto and Translation"/></td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" class="formLabel">
                     I have read the <a href="http://www.aplaisance.com/Tournament_Rules.html" target="_new" class="link">rules</a> and agree to abide by them.</p>
                     <input type="radio" name="terms" value="accept"/>  Accept<br>
                     <input type="radio" name="terms" value="decline"/> Decline
@@ -402,7 +402,7 @@
                 <td><input type="reset" value="Clear Form" class="resetButton" onclick="clearForm();"/></td>
             </tr>
         </table>
-        <p>If you're having trouble with the application, please email <a href="mailto:webmaster@aplaisance.com">webmaster@aplaisance.com</a>.</p>
+        <p class="bodyText">If you're having trouble with the application, please email <a href="mailto:webmaster@aplaisance.com">webmaster@aplaisance.com</a>.</p>
     </form>
 </body>
 </html>
