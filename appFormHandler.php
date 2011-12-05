@@ -10,6 +10,11 @@ function collectTextFields() {
     $phone = $_POST["phone"];
     $email = $_POST["email"];
     $experience = $_POST["experience"];
+    $joust = isset($_POST['joust']) ? 'Joust' : '';
+    $melee = isset($_POST['melee']) ? 'Melee a Cheval' : '';
+    $saa = isset($_POST['saa']) ? 'Skill At Arms' : '';
+    $isHauling = isset($_POST['haulingHorses']) ? 'YES' : 'NO';
+    $stalls = $_POST['stalls'];
     $bio = $_POST["bio"];
 
     $height = $_POST["height"];
@@ -27,7 +32,10 @@ function collectTextFields() {
                "Country: " . $country . "\n" .
                "Phone: " . $phone . "\n" .
                "E-mail: " . $email . "\n" .
+               "Competing in:\n" . $joust . ' ' . $saa . ' ' . $melee . '\n' .
                "Experience: " . $experience . "\n" .
+               "Hauling Horses?: " . $isHauling . "\n" .
+               "Stalls needed: " . $stalls . "\n" .
                "Bio: " . $bio . "\n" .
                "Height: " . $height . "\n" .
                "Weight: " . $weight . "\n" .
@@ -49,6 +57,7 @@ function insertDataInDb() {
     $phone = subDefaultIfUsingLastYearsInfo('phone', $_POST["phone"]);
     $email = mysql_real_escape_string($_POST["email"]);
     $experience = mysql_real_escape_string($_POST["experience"]);
+    $ijlMember = isset($_POST["ijlMember"]);
     $bio = mysql_real_escape_string($_POST["bio"]);
 
     $height = subDefaultIfUsingLastYearsInfo('height', $_POST['height']);
@@ -61,6 +70,7 @@ function insertDataInDb() {
     $melee = isset($_POST['melee']);
     $joust = isset($_POST['joust']);
 
+    $isHauling = isset($_POST['haulingHorses']);
     $stalls = $_POST['stalls'];
     $files = collectAndPrepareFiles();
     $armour = $files['armour'];
@@ -70,8 +80,8 @@ function insertDataInDb() {
     $themeMusic =  $files['themeMusic'];
 
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
-    "experience, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, theme_music, height, weight, started_jousting, occupation, motto_and_translation," .
-    "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience','$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
+    "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, theme_music, height, weight, started_jousting, occupation, motto_and_translation," .
+    "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience', '$ijlMember', '$isHauling', '$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
     "'$themeMusic','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip');";
 
     if (writeToDB($sql)) {

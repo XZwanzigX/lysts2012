@@ -87,6 +87,17 @@ function ensureEventIsSelected() {
     return '';
 }
 
+function ensureHaulingAndStallsAgree(){
+    var isHauling = document.getElementsByName('haulingHorses')[0].checked;
+    var stalls = document.getElementsByName('stalls')[0].value;
+
+    if (isHauling && stalls == 0) {
+        return 'Please select how many stalls you will need for the horses you are bringing in.\n';
+    } else {
+        return '';
+    }
+}
+
 function validateForm() {
     var validationErrors = "";
 
@@ -99,6 +110,7 @@ function validateForm() {
     validationErrors += validateTextFields()
                         + validatePhoneNumber()
                         + ensureEventIsSelected()
+                        + ensureHaulingAndStallsAgree()
                         + validateFiles();
 
     if (validationErrors != "") {
