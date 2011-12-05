@@ -118,7 +118,7 @@ function emailAppToOfficial() {
     $subject = "New application for: " . getParticipantName();
     $message = collectTextFields() . "\n";
 
-    mail("steve@aplaisance.com, foxfire@haunted-trails.com", $subject, $message);
+    mail("steve@aplaisance.com, webmaster@aplaisance.com", $subject, $message);
 }
 
 function emailApplicant($email)
