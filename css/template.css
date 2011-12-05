@@ -1,0 +1,5 @@
+.contentPane {width:900px; margin: 0 auto; background-color: #ffffff;}
+.nav {width:900px; height:300px; margin:0 auto; background-image: url('../img/apLogo.jpg');}
+.navBar {width: 900px; margin: 0 auto; background-image: url('../img/navBar.png');}
+.navLink{color: #ffffff; font-family:arial,helvetica,sans-serif; font-size:14pt;  text-decoration: none;}
+a.navLink:hover{color: #ffffff; font-family:arial,helvetica,sans-serif; font-size:14pt;  text-decoration: none; background-color: #13418A}

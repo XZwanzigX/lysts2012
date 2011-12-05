@@ -1,6 +1,161 @@
-.required {color:#ff0000; size:12pt;}
-.formLabel{font-family: arial,helvetica,sans-serif; size:12pt;vertical-align: top;}
-.formLabelCenter{font-family: arial,helvetica,sans-serif; size:12pt;vertical-align: top; text-align: center;}
-.bodyText{font-family:arial,helvetica,sans-serif; size:12pt;}
-.link{font-family: arial,helvetica,sans-serif; size:12pt; text-decoration: none;}
-.applicationTable{margin: 0 auto;}
+.required {
+    color:#ff0000;
+    font-size:12pt;
+}
+
+.formLabel{
+    font-family: arial,helvetica,sans-serif;
+    font-size:12pt;
+    vertical-align: top;
+}
+
+.formLabelCenter{
+    font-family:arial,helvetica,sans-serif;
+    font-size:12pt;
+    vertical-align: top;
+    text-align: center;
+}
+
+.bodyText{
+    font-family:arial,helvetica,sans-serif;
+    font-size:12pt;
+}
+
+.homeText{
+    font-family:arial,helvetica,sans-serif;
+    font-size:18px;
+}
+
+.listItem{
+    font-family:arial,helvetica,sans-serif;
+    font-size:12pt;
+}
+
+.listItemHome{
+    font-family:arial,helvetica,sans-serif;
+    font-size:18px;
+}
+
+.link{
+    font-family: arial,helvetica,sans-serif; font-size:12pt;
+    text-decoration: none;
+    color: #c93;
+}
+
+a.link:hover{
+    font-family: arial,helvetica,sans-serif; font-size:12pt;
+    text-decoration: none;
+    color:#13418A;
+}
+
+.applicationTable{
+    margin: 0 auto;
+}
+
+.lystsHeadline{
+    font-family: arial,helvetica,sans-serif;
+    font-size:46pt;
+    margin: auto;
+    font-weight: bold;
+    text-decoration: underline;
+    color:#13418A;
+}
+
+.subHeadline{
+    font-family: arial,helvetica,sans-serif;
+    font-size:26pt;
+    margin: auto;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.title{
+    width:800px;
+    margin: 0 auto;
+}
+
+.eventHeader{
+    font-family: arial,helvetica,sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.innerContent {
+    width:700px;
+    margin: 0 auto;
+}
+
+.formTextContainer {
+    width:800px;
+    margin: 0 auto;
+}
+
+.bigLystsLink {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 56px;
+    color: #c93;
+}
+
+a.bigLystsLink:hover{
+    font-family: arial,helvetica,sans-serif;
+    font-size: 56px;
+    color:#13418A;
+}
+
+.lystsDates {
+    font-family: arial, helvetica,sans-serif;
+    font-size:32px;
+    color:#13418A;
+}
+
+.lystsText {
+    font-family: arial, helvetica,sans-serif;
+    font-size:24px;
+    color:#13418A;
+}
+
+.smallLystsLink {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 18px;
+    color: #c93;
+    font-style: italic;
+    text-decoration: none;
+}
+
+a.smallLystsLink:hover {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 18px;
+    color:#13418A;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.richardLink {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 18px;
+    color: #c93;
+}
+a.richardLink:hover {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 18px;
+    color:#13418A;
+}
+
+.castletonLink {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 18px;
+    color: #c93;
+}
+a.castletonLink:hover {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 18px;
+    color:#13418A;
+}
+
+.pageHeader {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 56px;
+    color:#13418A;
+    font-weight: bold;
+}
