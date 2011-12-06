@@ -25,7 +25,7 @@
             <?php include('nav.php');?>
 
                 <?php include('form.html'); ?>
-            <p>&nbsp;</p>
+            </p><p>&nbsp;</p>
         </div>
     </body>
 </html>
