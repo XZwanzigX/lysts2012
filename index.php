@@ -14,7 +14,7 @@
                     <img src="img/home.png"/>
 
                     <p class="lystsText">Join us at the world's largest
-                    <br>open competitive jousting tournament!
+                    <br>competitive jousting tournament!
                 </div>
 
                 <p class="homeText"><a href="http://www.texasjoust.com" class="smallLystsLink">Lysts on the Lake</a> is open to all qualified competitors and consists of three events:
