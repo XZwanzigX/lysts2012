@@ -1,4 +1,6 @@
 <?php
+include('../db/dbConnection.php');
+
 function collectTextFields() {
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
@@ -13,7 +15,8 @@ function collectTextFields() {
     $joust = isset($_POST['joust']) ? 'Joust' : '';
     $melee = isset($_POST['melee']) ? 'Melee a Cheval' : '';
     $saa = isset($_POST['saa']) ? 'Skill At Arms' : '';
-    $isHauling = isset($_POST['haulingHorses']) ? 'YES' : 'NO';
+    $isHauling = $_POST['haulingHorses'] ? 'YES' : 'NO';
+    $ijlMember = $_POST['ijlMember'] ? 'YES' : 'NO';
     $stalls = $_POST['stalls'];
     $bio = $_POST["bio"];
 
@@ -34,6 +37,7 @@ function collectTextFields() {
                "E-mail: " . $email . "\n" .
                "Competing in:\n" . $joust . ' ' . $saa . ' ' . $melee . '\n' .
                "Experience: " . $experience . "\n" .
+               "IJL Member: " . $ijlMember . "\n" .
                "Hauling Horses?: " . $isHauling . "\n" .
                "Stalls needed: " . $stalls . "\n" .
                "Bio: " . $bio . "\n" .
@@ -46,7 +50,7 @@ function collectTextFields() {
 }
 
 function insertDataInDb() {
-    setupDbCon();
+    newWriteConnection();
     $firstName = mysql_real_escape_string($_POST["firstName"]);
     $lastName = mysql_real_escape_string($_POST["lastName"]);
     $address = mysql_real_escape_string($_POST["address"]);
@@ -57,7 +61,7 @@ function insertDataInDb() {
     $phone = subDefaultIfUsingLastYearsInfo('phone', $_POST["phone"]);
     $email = mysql_real_escape_string($_POST["email"]);
     $experience = mysql_real_escape_string($_POST["experience"]);
-    $ijlMember = isset($_POST["ijlMember"]);
+    $ijlMember = $_POST["ijlMember"];
     $bio = mysql_real_escape_string($_POST["bio"]);
 
     $height = subDefaultIfUsingLastYearsInfo('height', $_POST['height']);
@@ -70,7 +74,7 @@ function insertDataInDb() {
     $melee = isset($_POST['melee']);
     $joust = isset($_POST['joust']);
 
-    $isHauling = isset($_POST['haulingHorses']);
+    $isHauling = $_POST['haulingHorses'];
     $stalls = $_POST['stalls'];
     $files = collectAndPrepareFiles();
     $armour = $files['armour'];

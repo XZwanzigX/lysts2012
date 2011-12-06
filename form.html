@@ -1,11 +1,13 @@
     <form id="theForm" action="appFormHandler.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
         <div class="formTextContainer">
             <img src="img/application.png" style="margin: 0 auto;"/>
-            <p class="formLabel">Thank you for your interest in competing in the equestrian portion of "Lysts on the Lake" 2012.  Please complete the application below by filling in all the required fields.  If you have participated in "Lysts on the Lake" 2011, we already have much of your information so you will not be required to resubmit.  Please check the box below indicating that we already have your information on file.  However, if you would like to update the information, please feel free to do so.  You will not be able to submit your application until all of the required fields have been completed.
+            <p class="formLabel">Thank you for your interest in competing in the equestrian portion of "Lysts on the Lake 2012".  Please complete the application below by filling in all the required fields.  If you participated in "Lysts on the Lake 2011", we still have the information that you submitted for 2011.  You may choose to use the same information submitted last year by checking: "Please use last year's information where available."  However, if you would like to update the information, please feel free to do so.  You will not be able to submit your application until all of the required fields have been completed.
 
             <p class="formLabel">This page will continue to be active until Jan. 6, 2012.  After that, the application process will be closed.  On Jan. 9, 2012 you will receive a waiver and information packet which you will be required to sign and return.  Scanned signatures will be accepted and are the quickest method of returning the completed waiver packet.  There are a limited number of slots available for the joust so the roster will be determined by the order in which we receive your signed waiver.  The 2011 roster filled up in just a few days and there is much greater interest for 2012.
 
             <p class="formLabel">A new addition for 2012 is the "theme song".  Please provide a maximum of a 30 second .mp3 of a song that you feel best represents you.  We will use these sound bites to introduce you as you ride onto the field.  You may use any song you like but please be respectful of the family oriented audience.
+
+            <div align="center"><p class="formLabel"><input type="checkbox" name="returningCompetitor" onclick="alreadyHaveInfo();"/> Please use last year's information where available.</div>
         </div>
         <table class="applicationTable">
             <tr>
@@ -17,13 +19,7 @@
                 <td class="formText"><input type="text" name="lastName" id="Last Name"></td>
             </tr>
             <tr>
-                <td class="formLabelCenter" colspan="2">
-                    <input type="checkbox" name="returningCompetitor" onclick="alreadyHaveInfo();"/> Please use last year's info.<br>
-                    <input type="checkbox" name="ijlMember"/> <a href="http://users.skynet.be/hackamores/IJL/IJL-application.pdf" target="_new" class="link">International Jousting League</a> member.
-                </td>
-            </tr>
-            <tr>
-                <td class="formLabel">Address:<em class="required">*</em></td>
+                <td class="formLabel">Street Address:<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="address" id="Address"></td>
             </tr>
             <tr>
@@ -31,11 +27,11 @@
                 <td class="formText"><input type="text" name="city" id="City"></td>
             </tr>
             <tr>
-                <td class="formLabel">State:<em class="required">*</em></td>
+                <td class="formLabel">State (or Province):<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="state" id="State/Province"> </td>
             </tr>
             <tr>
-                <td class="formLabel">Zip:<em class="required">*</em></td>
+                <td class="formLabel">Zip (or Postal Code):<em class="required">*</em></td>
                 <td class="formText"><input type="text" name="zip" id="Zip/Post Code"></td>
             </tr>
             <tr>
@@ -301,6 +297,33 @@
                 <td class="formText"><input type="text" name="email" id="Email"></td>
             </tr>
             <tr>
+                <td class="formLabel">Will you be bringing a horse/horses to the tournament?<em class="required">*</em></td>
+                <td><select name="haulingHorses" id="Hauling horses?">
+                        <option value=""></option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="formLabel">Number of stalls needed:<em class="required">*</em></td>
+                <td>
+                    <select name="stalls" id="Number of stalls Needed">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td class="formLabel">Competing in:<em class="required">*</em></td>
                 <td class="formText">
                     <input type="checkbox" name="saa" id="Skill At Arms" value="1"/> Skill At Arms<br>
@@ -309,39 +332,54 @@
                 </td>
             </tr>
             <tr>
+                <td class="formLabel"><em class="required">~NEW~</em>Theme music (30 second mp3)<em class="required">*</em></td>
+                <td><input type="file" name="themeMusic" id="Theme Music"/></td>
+            </tr>
+
+            <tr>
+                <td class="formLabel">Jousting Since (year):<em class="required">*</em></td>
+                <td><input type="text" name="joustingSince" id="Started Jousting"/></td>
+            </tr>
+            <tr>
                 <td class="formLabel">Experience:<em class="required">*</em></td>
                 <td><textarea rows="5" cols="50" name="experience" id="Experience"></textarea></td>
             </tr>
             <tr>
-                <br><br><td class="formLabel" colspan="2"></td>
+                <td class="formLabel">Are you a member of the <a href="http://users.skynet.be/hackamores/IJL/IJL-application.pdf" target="_new" class="link">International Jousting League</a>?</td>
+                <td>
+                    <select name="ijlMember">
+                        <option value=""></option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </td>
             </tr>
             <tr>
-                <td class="formLabel">Stalls needed:<em class="required">*</em></td>
-                <td><p class="formLabel"><input type="checkbox" name="haulingHorses"/> I will be hauling horses in.<br>
-                    <select name="stalls" id="Stalls Needed">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select></td>
+                <td class="formLabel">Motto and Translation:<em class="required">*</em></td>
+                <td><input type="text" name="motto" id="Motto and Translation"/></td>
             </tr>
             <tr>
                 <td class="formLabel">Bio for publication:<em class="required">*</em></td>
                 <td><textarea rows="4" cols="50" name="bio" id="Bio"></textarea></td>
             </tr>
             <tr>
+                <td class="formLabel">Occupation:<em class="required">*</em></td>
+                <td><input type="text" name="occupation" id="Occupation"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Height in feet and inches (ex 5'10"):<em class="required">*</em></td>
+                <td><input type="text" name="height" id="Height"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel">Weight in pounds (ex. 160):<em class="required">*</em></td>
+                <td><input type="text" name="weight" id="Weight"/></td>
+            </tr>
+            <tr>
                 <td class="formLabel">Armour Photo:<em class="required">*</em></td>
                 <td><input type="file" name="armourPic" id="Armour Picture"/></td>
             </tr>
             <tr>
-                <td class="formLabel">Soft kit Photo:<em class="required">*</em></td>
+                <td class="formLabel">Soft Kit Photo:<em class="required">*</em></td>
                 <td><input type="file" name="softKitPic" id="Soft Kit Photo"/></td>
             </tr>
             <tr>
@@ -352,33 +390,10 @@
                 <td class="formLabel">Coat of Arms:<em class="required">*</em></td>
                 <td><input type="file" name="armsPic" id="Coat of Arms Graphic"/></td>
             </tr>
-            <tr>
-                <td class="formLabel">Theme music (30 second mp3)<em class="required">*</em></td>
-                <td><input type="file" name="themeMusic" id="Theme Music"/></td>
-            </tr>
-            <tr>
-                <td class="formLabel">Height (in X'XX"):<em class="required">*</em></td>
-                <td><input type="text" name="height" id="Height"/></td>
-            </tr>
-            <tr>
-                <td class="formLabel">Weight (in pounds):<em class="required">*</em></td>
-                <td><input type="text" name="weight" id="Weight"/></td>
-            </tr>
-            <tr>
-                <td class="formLabel">Jousting Since:<em class="required">*</em></td>
-                <td><input type="text" name="joustingSince" id="Started Jousting"/></td>
-            </tr>
-            <tr>
-                <td class="formLabel">Occupation:<em class="required">*</em></td>
-                <td><input type="text" name="occupation" id="Occupation"/></td>
-            </tr>
-            <tr>
-                <td class="formLabel">Motto and Translation:<em class="required">*</em></td>
-                <td><input type="text" name="motto" id="Motto and Translation"/></td>
-            </tr>
+
             <tr>
                 <td colspan="2" class="formLabelCenter">
-                    I have read the <a href="http://www.aplaisance.com/Tournament_Rules.html" target="_new" class="link">rules</a> and agree to abide by them.
+                    I have read the <a href="http://www.aplaisance.com/Tournament_Rules.html" target="_new" class="link">rules</a> and agree to abide by them.<br>
                     <input type="radio" name="terms" value="accept"/>  Accept<br>
                     <input type="radio" name="terms" value="decline"/> Decline
                 </td>

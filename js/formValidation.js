@@ -20,7 +20,7 @@ function validateTextFields() {
             validationErrors += "Please enter a valid email so that we can get in touch with you!\n";
         } else if (validateItem && e.name == 'height' && !e.value.match(heightRegex)) {
             validationErrors += "Please enter your height in the form X\'X\"\n";
-        } else if (validateItem && (e.name != 'softKitPic' && e.name != 'armsPic' && e.name !='closeUpPic' && e.name != 'armourPic' && e.name != 'themeMusic') && !e.value.match(/\S/)) {
+        } else if (validateItem && (e.name != 'softKitPic' && e.name != 'armsPic' && e.name !='closeUpPic' && e.name != 'armourPic' && e.name != 'themeMusic' && e.name !='haulingHorses' && e.name != 'ijlMember') && !e.value.match(/\S/)) {
             validationErrors += "Please enter a value for " + e.id + "\n";
         }
 
@@ -58,7 +58,7 @@ function validatePhoneNumber() {
 function validateFiles() {
     var validationErrors = '';
     var fileRegEx = /([^\s]+\.(jpg|jpeg|png|gif)$)/;
-    var mp3Regex = /([^\s]+\.mp3$)/;
+    var mp3Regex = /(\.mp3$)/;
 
     var elements = document.getElementById('theForm').elements;
     var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
@@ -88,11 +88,31 @@ function ensureEventIsSelected() {
 }
 
 function ensureHaulingAndStallsAgree(){
-    var isHauling = document.getElementsByName('haulingHorses')[0].checked;
+    var isHauling = document.getElementsByName('haulingHorses')[0].value == 1;
     var stalls = document.getElementsByName('stalls')[0].value;
 
     if (isHauling && stalls == 0) {
         return 'Please select how many stalls you will need for the horses you are bringing in.\n';
+    } else {
+        return '';
+    }
+}
+
+function ensureHaulingIsAnswered(){
+    var haulingAnswered = document.getElementsByName('haulingHorses')[0].value != "";
+
+    if (!haulingAnswered) {
+        return 'Please indicate whether you will be hauling in horses to the tournament.\n'
+    } else {
+        return '';
+    }
+}
+
+function ensureIjlMemberIsAnswered() {
+    var ijlMemberAnswered = document.getElementsByName('ijlMember')[0].value != "";
+
+    if (!ijlMemberAnswered) {
+        return 'Please indicate whether you are a IJL member.\n';
     } else {
         return '';
     }
@@ -111,6 +131,8 @@ function validateForm() {
                         + validatePhoneNumber()
                         + ensureEventIsSelected()
                         + ensureHaulingAndStallsAgree()
+                        + ensureHaulingIsAnswered()
+                        + ensureIjlMemberIsAnswered()
                         + validateFiles();
 
     if (validationErrors != "") {
