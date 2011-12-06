@@ -1,7 +1,7 @@
 <html>
 
     <head>
-        <title>a'Plaisance, Ltd: Contact us</title>
+        <title>a'Plaisance, Ltd: Tournament Application</title>
 
         <link rel="stylesheet" type="text/css" href="css/styles.css"/>
         <link rel="stylesheet" type="text/css" href="css/template.css"/>

@@ -16,8 +16,8 @@
 
             <p class="bodyText"><i>Lysts on the Lake</i> is open to all qualified equestrian competitors and entry into the equestrian martial activities will be based on the order in which the signed waivers and all other requirements are fulfilled.  The roster is limited and there will be a waiting list if needed.
             <ul>
-                <li class="listItem">Equestrian martial activities applications will be accepted until January 2, 2012</li>
-                <li class="listItem">Waiver packets will be emailed to all applicants on February 6, 2012</li>
+                <li class="listItem">Equestrian martial activities applications will be accepted until January 6, 2012</li>
+                <li class="listItem">Waiver packets will be emailed to all applicants on February 9, 2012</li>
                 <li class="listItem">All requirements (listed below) must be submitted no later than Monday, March 5, 2012.  Remember that the roster will be determined by the order in which all the requirements are fulfilled so do not wait until the last minute or you will likely not receive a spot on the roster.
             </ul>
 
