@@ -30,7 +30,8 @@ function validateTextFields() {
                                     && e.name != 'song'
                                     && e.name != 'artist'
                                     && e.name != 'startTime'
-                                    && e.name != 'endTime') && !e.value.match(/\S/)) {
+                                    && e.name != 'endTime'
+                                    && e.name != 'favDrink') && !e.value.match(/\S/)) {
             validationErrors += "Please enter a value for " + e.id + "\n";
         }
 

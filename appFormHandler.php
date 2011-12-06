@@ -11,6 +11,7 @@ function collectTextFields() {
     $country = $_POST["country"];
     $phone = $_POST["phone"];
     $email = $_POST["email"];
+    $favDrink = $_POST['favDrink'];
     $experience = $_POST["experience"];
     $joust = isset($_POST['joust']) ? 'Joust' : '';
     $melee = isset($_POST['melee']) ? 'Melee a Cheval' : '';
@@ -45,6 +46,7 @@ function collectTextFields() {
                "Country: " . $country . "\n" .
                "Phone: " . $phone . "\n" .
                "E-mail: " . $email . "\n" .
+               "Favorite Drink: " . $favDrink . "\n" .
                "Hauling Horses?: " . $isHauling . "\n" .
                "Stalls needed: " . $stalls . "\n" .
                "Competing in:\n\t" . $joust . ' ' . $saa . ' ' . $melee . "\n" .
@@ -72,6 +74,7 @@ function insertDataInDb() {
     $country = mysql_real_escape_string($_POST["country"]);
     $phone = subDefaultIfUsingLastYearsInfo('phone', $_POST["phone"]);
     $email = mysql_real_escape_string($_POST["email"]);
+    $favDrink = mysql_real_escape_string($_POST['favDrink']);
     $experience = mysql_real_escape_string($_POST["experience"]);
     $ijlMember = $_POST["ijlMember"];
     $bio = mysql_real_escape_string($_POST["bio"]);
@@ -102,8 +105,8 @@ function insertDataInDb() {
 
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
     "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, theme_music, song, artist, start, end, height, weight, started_jousting, occupation, motto_and_translation," .
-    "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience', '$ijlMember', '$isHauling', '$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
-    "'$themeMusic','$song','$artist','$start','$end','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip');";
+    "zip,favorite_drink) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience', '$ijlMember', '$isHauling', '$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
+    "'$themeMusic','$song','$artist','$start','$end','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip','$favDrink');";
 
     if (writeToDB($sql)) {
         emailApplicant($email);
