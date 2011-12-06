@@ -13,7 +13,7 @@
                 <div align="center">
                     <img src="img/home.png"/>
 
-                    <p class="lystsText">Join us at North America's largest
+                    <p class="lystsText">Join us at the world's largest
                     <br>open competitive jousting tournament!
                 </div>
 
