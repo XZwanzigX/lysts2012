@@ -11,8 +11,7 @@
             <?php include('nav.php');?>
             <div style="width: 800px; margin:0 auto; background-color: #ffffff;">
             <div align="center">
-                <b class="lystsHeadline">Lysts on the Lake 2012</b>
-                <br><b class="subHeadline">Equestrian Tournament Information</b>
+                <img src="img/tourneyInfo.png"/>
             </div>
 
             <p class="bodyText"><i>Lysts on the Lake</i> is open to all qualified equestrian competitors and entry into the equestrian martial activities will be based on the order in which the signed waivers and all other requirements are fulfilled.  The roster is limited and there will be a waiting list if needed.
@@ -194,7 +193,8 @@
              
             <p class="bodyText"><b class="gameTitle">Stable Management:</b> it is your responsibility to insure your horse is happy and content in his stall with bedding and the area around it is kept tidy.  Competitors and their squires are solely responsible for insuring their horses are fed, watered and the stall is mucked out regularly. At the end of the event, it is the competitor's responsibility to make sure that their stalls are clean before leaving the site.
              
-            <p class="bodyText"><b class="gameTitle">Media and Sponsor Events:</b> before or during the tournament there may be a number of events held for the benefit of the media or event sponsors.  All competitors may be required to attend these events and act in good faith.
+            <p class="bodyText"><b class="gameTitle">Media and Sponsor Events:</b> before or during the tournament there may be a number of events held for the benefit of the media or event sponsors.  All competitors may be required to attend these events and act in good faith.</p>
+            <p>&nbsp;</p>
         </div>
         </div>
     </body>

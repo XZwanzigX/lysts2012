@@ -20,7 +20,17 @@ function validateTextFields() {
             validationErrors += "Please enter a valid email so that we can get in touch with you!\n";
         } else if (validateItem && e.name == 'height' && !e.value.match(heightRegex)) {
             validationErrors += "Please enter your height in the form X\'X\"\n";
-        } else if (validateItem && (e.name != 'softKitPic' && e.name != 'armsPic' && e.name !='closeUpPic' && e.name != 'armourPic' && e.name != 'themeMusic' && e.name !='haulingHorses' && e.name != 'ijlMember') && !e.value.match(/\S/)) {
+        } else if (validateItem && (e.name != 'softKitPic'
+                                    && e.name != 'armsPic'
+                                    && e.name !='closeUpPic'
+                                    && e.name != 'armourPic'
+                                    && e.name != 'themeMusic'
+                                    && e.name !='haulingHorses'
+                                    && e.name != 'ijlMember'
+                                    && e.name != 'song'
+                                    && e.name != 'artist'
+                                    && e.name != 'startTime'
+                                    && e.name != 'endTime') && !e.value.match(/\S/)) {
             validationErrors += "Please enter a value for " + e.id + "\n";
         }
 
@@ -55,6 +65,30 @@ function validatePhoneNumber() {
     }
 }
 
+function themeMusicDataProvided() {
+   return document.getElementsByName('song')[0].value != ""
+          && document.getElementsByName('artist')[0].value != ""
+          && document.getElementsByName('startTime')[0].value != ""
+          && document.getElementsByName('endTime')[0].value != "";
+}
+
+function validateTimes() {
+    var validationErrors = '';
+    if (document.getElementsByName('themeMusic')[0].value != "") {return validationErrors;}
+    var timeSig = /\d*:\d{2}/;
+    var startTime = document.getElementsByName('startTime')[0].value;
+    var endTime = document.getElementsByName('endTime')[0].value;
+
+    if (startTime != "" && !startTime.match(timeSig)) {
+        validationErrors += 'Please enter valid value for start time MM:SS\n';
+    }
+
+    if (endTime != "" && !endTime.match(timeSig)) {
+        validationErrors += 'Please enter valid value for end time MM:SS\n';
+    }
+    return validationErrors
+}
+
 function validateFiles() {
     var validationErrors = '';
     var fileRegEx = /([^\s]+\.(jpg|jpeg|png|gif)$)/;
@@ -68,8 +102,8 @@ function validateFiles() {
 
         if(validateItem && elements[i].name.match(/armourPic|softKitPic|closeUpPic|armsPic/) && !elements[i].value.match(fileRegEx)) {
             validationErrors += 'Please upload an image for '+ elements[i].id + "\n";
-        } else if (elements[i].name == 'themeMusic' && !elements[i].value.match(mp3Regex)) {
-            validationErrors += 'Please upload an mp3 for ' + elements[i].id + "\n";
+        } else if (elements[i].name == 'themeMusic' && (!elements[i].value.match(mp3Regex) && !themeMusicDataProvided())) {
+            validationErrors += 'Please either upload an mp3 for ' + elements[i].id + " or provide Song, artist, start and stop time\n";
         }
     }
 
@@ -133,6 +167,7 @@ function validateForm() {
                         + ensureHaulingAndStallsAgree()
                         + ensureHaulingIsAnswered()
                         + ensureIjlMemberIsAnswered()
+                        + validateTimes()
                         + validateFiles();
 
     if (validationErrors != "") {

@@ -11,7 +11,7 @@
             <?php include('nav.php');?>
             <div class="innerContent">
                 <div align="center">
-                    <b class="pageHeader">Contact Information</b>
+                    <img src="img/Contact.png"/>
                     <p class="homeText"><a href="http://www.texasjoust.com" class="smallLystsLink">Lysts on the Lake</a> is a production of
                         <br>a'Plaisance, Ltd,
                         <br>Austin, Texas
@@ -21,6 +21,8 @@
                         <p class="hometext">
                             Should you have any questions, please feel free to contact us for more information.
                         </p>
+                    </p>
+                    <p>&nbsp;</p>
                 </div>
             </div>
         </div>

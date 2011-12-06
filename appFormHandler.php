@@ -26,6 +26,16 @@ function collectTextFields() {
     $occupation = $_POST["occupation"];
     $motto = $_POST["motto"];
 
+    $song = $_POST['song'];
+    $artist = $_POST['artist'];
+    $startTime = $_POST['startTime'];
+    $endTime = $_POST['endTime'];
+    $themeMusic = $_FILES['themeMusic'] == '' ? '' :
+                'Song: ' . $song .
+                'Artist: ' . $artist .
+                'Start Time: ' . $startTime .
+                'End Time: ' . $endTime . '\n';
+
     $message = "First Name: " . $firstName . "\n" .
                "Last Name: " . $lastName . "\n" .
                "Address: " . $address . "\n" .
@@ -35,17 +45,19 @@ function collectTextFields() {
                "Country: " . $country . "\n" .
                "Phone: " . $phone . "\n" .
                "E-mail: " . $email . "\n" .
-               "Competing in:\n" . $joust . ' ' . $saa . ' ' . $melee . '\n' .
-               "Experience: " . $experience . "\n" .
-               "IJL Member: " . $ijlMember . "\n" .
                "Hauling Horses?: " . $isHauling . "\n" .
                "Stalls needed: " . $stalls . "\n" .
+               "Competing in:\n" . $joust . ' ' . $saa . ' ' . $melee . '\n' .
+               "Started Jousting: " . $dateStartedJousting . "\n" .
+               "Experience: " . $experience . "\n" .
+               "IJL Member: " . $ijlMember . "\n" .
+               "Motto: " . $motto . "\n" .
                "Bio: " . $bio . "\n" .
+               "Occupation: " . $occupation . "\n" .
                "Height: " . $height . "\n" .
                "Weight: " . $weight . "\n" .
-               "Occupation: " . $occupation . "\n" .
-               "Started Jousting: " . $dateStartedJousting . "\n" .
-               "Motto: " . $motto . "\n";
+               '\n' .
+               $themeMusic;
     return $message;
 }
 
@@ -83,10 +95,15 @@ function insertDataInDb() {
     $arms = $files['arms'];
     $themeMusic =  $files['themeMusic'];
 
+    $song = $_POST['song'];
+    $artist = $_POST['artist'];
+    $start = $_POST['startTime'];
+    $end = $_POST['endTime'];
+
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
-    "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, theme_music, height, weight, started_jousting, occupation, motto_and_translation," .
+    "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, theme_music, song, artist, start, end, height, weight, started_jousting, occupation, motto_and_translation," .
     "zip) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience', '$ijlMember', '$isHauling', '$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
-    "'$themeMusic','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip');";
+    "'$themeMusic','$song','$artist','$start','$end','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip');";
 
     if (writeToDB($sql)) {
         emailApplicant($email);
@@ -152,16 +169,18 @@ function collectAndPrepareFiles() {
     $arms = $_FILES["armsPic"];
     $theme = $_FILES['themeMusic'];
 
-    $files['armour'] = prepareImageForDbInsert($armourPic, true);
-    $files['softKit'] = prepareImageForDbInsert($softKitPic, true);
-    $files['portrait'] = prepareImageForDbInsert($portraitPic, true);
-    $files['arms'] = prepareImageForDbInsert($arms, true);
-    $files['themeMusic'] = prepareImageForDbInsert($theme, false);
+    $files['armour'] = prepareImageForDbInsert('armourPic', $armourPic, true);
+    $files['softKit'] = prepareImageForDbInsert('softKitPic', $softKitPic, true);
+    $files['portrait'] = prepareImageForDbInsert('closeUpPic', $portraitPic, true);
+    $files['arms'] = prepareImageForDbInsert('armsPic', $arms, true);
+    $files['themeMusic'] = prepareImageForDbInsert('themeMusic', $theme, false);
 
     return $files;
 }
 
-function prepareImageForDbInsert($file, $isPic) {
+function prepareImageForDbInsert($key, $file, $isPic) {
+    if($key == 'themeMusic' && $file['size'] == 0) { return ''; }
+
     if ($file['size'] > 0) {
         $tmpFile = $file['tmp_name'];
         $fp = fopen($tmpFile, 'r');
@@ -220,11 +239,12 @@ function validateFiles() {
 }
 
 function validateFile($file, $key) {
+    if($key == 'themeMusic') { return; }
     $fileName = $file['name'];
     $mimeType = $file['type'];
     $validateFile  = useLastYearInfo() ? $key == 'themeMusic' : true;
 
-    if ($validateFile && !preg_match('/([^\s]+(\.(?i)(jpg|jpeg|png|gif|mp3))$)/', $fileName)) {
+    if ($validateFile && !preg_match('/((\.(jpg|jpeg|png|gif|mp3))$)/', $fileName)) {
         die("Invalid file sent");
     }
 

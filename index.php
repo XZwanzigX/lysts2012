@@ -11,8 +11,7 @@
             <?php include('nav.php');?>
             <div class="innerContent">
                 <div align="center">
-                    <a href="http://www.texasjoust.com" class="bigLystsLink">Lysts on the Lake</a>
-                    <br><b class="lystsDates">May 4, 5, 6, 2012</b>
+                    <img src="img/home.png"/>
 
                     <p class="lystsText">Join us at North America's largest
                     <br>open competitive jousting tournament!
@@ -33,6 +32,8 @@
                 </ul>
                 <p class="homeText"><a href="http://www.texasjoust.com" class="smallLystsLink">Lysts on the Lake</a> is generously hosted by award-winning computer game developer, entrepreneur, philanthropist and space explorer,
                     <a href="http://www.richardgarriott.com/biography/" class="richardLink">Richard Garriott</a> and is held on his private estate in Austin, Texas within the "<a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=7400+Coldwater+Canyon+Drive,+Austin,+TX&sll=32.850658,-96.804549&sspn=3.437541,7.13562&ie=UTF8&hq=&hnear=7400+Coldwater+Canyon+Dr,+Austin,+Travis,+Texas+78730&z=17" class="castletonLink">Village of Castleton</a>"... a picturesque, medieval inspired village located on the shores of Lake Austin.
+                </p>
+                <p>&nbsp;</p>
             </div>
         </div>
     </body>

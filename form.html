@@ -297,7 +297,7 @@
                 <td class="formText"><input type="text" name="email" id="Email"></td>
             </tr>
             <tr>
-                <td class="formLabel">Will you be bringing a horse/horses to the tournament?<em class="required">*</em></td>
+                <td class="formLabel">Are you personally hauling a horse/horses to the tournament?<em class="required">*</em></td>
                 <td><select name="haulingHorses" id="Hauling horses?">
                         <option value=""></option>
                         <option value="1">Yes</option>
@@ -332,8 +332,43 @@
                 </td>
             </tr>
             <tr>
+                <td class="formLabel" colspan="2>">You may <b>either</b> upload a NO MORE THAN 30 SECOND mp3 file of your chosen music</td>
+            </tr>
+            <tr>
                 <td class="formLabel"><em class="required">~NEW~</em>Theme music (30 second mp3)<em class="required">*</em></td>
                 <td><input type="file" name="themeMusic" id="Theme Music"/></td>
+            </tr>
+            <tr>
+                <td class="formLabel" colspan="2">
+                    <b>or</b>
+                    <br>
+                    Enter information describing the excerpt of music that you wish to use:
+                </td>
+            </tr>
+            <tr>
+                <td class="formLabel">
+                    Theme Music:
+                </td>
+                <td class="formLabel">
+                    <table>
+                        <tr>
+                            <td class="formLabel">Song Title:</td>
+                            <td class="formLabel"><input type="text" name="song" id="Song"/></td>
+                        </tr>
+                        <tr>
+                            <td class="formLabel">Artist: </td>
+                            <td><input type="text" name="artist" id="Artist"/></td>
+                        </tr>
+                        <tr>
+                            <td class="formLabel">Start Time:</td>
+                            <td><input type="text" name="startTime" id="Start Time"/></td>
+                        </tr>
+                        <tr>
+                            <td class="formLabel">End Time:</td>
+                            <td><input type="text" name="endTime" id="End Time"/></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
 
             <tr>
