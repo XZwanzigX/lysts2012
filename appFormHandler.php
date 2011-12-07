@@ -113,7 +113,7 @@ function insertDataInDb() {
     $end = $_POST['endTime'];
 
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
-    "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo, soft_kit_photo, soft_kit_mime, portrait_photo, portrait_mime," .
+    "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo,armour_mime, soft_kit_photo, soft_kit_mime, portrait_photo, portrait_mime," .
     "arms_photo, arms_mime, theme_music, theme_mime, song, artist, start, end, height, weight, started_jousting, occupation, motto_and_translation," .
     "zip,favorite_drink) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust'," .
     "'$experience', '$ijlMember', '$isHauling', '$stalls','$bio','$armour','$armourMime','$softKit','$softKitMime','$portrait', '$portraitMime','$arms','$armsMime'," .
@@ -124,7 +124,8 @@ function insertDataInDb() {
         emailAppToOfficial();
         $result ="Thanks for submitting your application!  We'll be in touch soon.";
     } else {
-        $result = "Sorry, we are temporarily unable to process your application.  Please try again later.";
+        mail('webmaster@aplaisance.com', 'DB problem', $sql . "<p>Insert to DB failed.  Please try again later.<p>" . mysql_error());
+        $result = "Sorry, we are temporarily unable to process your application.  The webmaster has been notified of the error and will contact you shortly.";
     }
     displayFormMessage($result);
 }
@@ -146,7 +147,7 @@ function subDefaultIfUsingLastYearsInfo($key, $value) {
 }
 
 function writeToDb($sql) {
-    return mysql_query($sql) or displayFormMessage("Insert to DB failed.  Please try again later.");
+    return mysql_query($sql);
 }
 
 function setupDbCon()
@@ -192,7 +193,7 @@ function collectAndPrepareFiles() {
     $files['softKit']['mime'] = $softKitPic['type'];
     $files['portrait']['img'] = prepareImageForDbInsert('closeUpPic', $portraitPic, true);
     $files['portrait']['mime'] = $portraitPic['type'];
-    $files['arms'] = prepareImageForDbInsert('armsPic', $arms, true);
+    $files['arms']['img'] = prepareImageForDbInsert('armsPic', $arms, true);
     $files['arms']['mime'] = $arms['type'];
     $files['themeMusic']['img'] = prepareImageForDbInsert('themeMusic', $theme, false);
     $files['themeMusic']['mime'] = $theme['type'];
@@ -267,9 +268,9 @@ function validateFile($file, $key) {
         displayFormMessage("Invalid file sent");
     }
 
-    if ($validateFile && (!preg_match('/image\/(jpg|jpeg|gif|png)/', $mimeType) && !preg_match('/audio\/(mp3|mpeg3)/', $mimeType))) {
+    /*if ($validateFile && (!preg_match('/image\/(jpg|jpeg|gif|png)/i', $mimeType) && !preg_match('/audio\/(mp3|mpeg3)/i', $mimeType))) {
         displayFormMessage("Invalid file MIME type.  We can only support jpg, gif, png or mp3.");
-    }
+    }*/
 
 }
 
