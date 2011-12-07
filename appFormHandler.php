@@ -92,11 +92,20 @@ function insertDataInDb() {
     $isHauling = $_POST['haulingHorses'];
     $stalls = $_POST['stalls'];
     $files = collectAndPrepareFiles();
-    $armour = $files['armour'];
-    $softKit = $files['softKit'];
-    $portrait = $files['portrait'];
-    $arms = $files['arms'];
-    $themeMusic =  $files['themeMusic'];
+    $armour = $files['armour']['img'];
+    $armourMime = $files['armour']['mime'];
+
+    $softKit = $files['softKit']['img'];
+    $softKitMime = $files['softKit']['mime'];
+
+    $portrait = $files['portrait']['img'];;
+    $portraitMime = $files['portrait']['mime'];
+
+    $arms = $files['arms']['img'];
+    $armsMime = $files['arms']['mime'];
+
+    $themeMusic =  $files['themeMusic']['img'];
+    $themeMusicMime = $files['themeMusic']['mime'];
 
     $song = $_POST['song'];
     $artist = $_POST['artist'];
@@ -104,9 +113,11 @@ function insertDataInDb() {
     $end = $_POST['endTime'];
 
     $sql = "insert into application_2012(first_name, last_name, address, city, state, country, phone, email, skill_at_arms, melee_a_cheval, joust," .
-    "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo, soft_kit_photo, portrait_photo, arms_photo, theme_music, song, artist, start, end, height, weight, started_jousting, occupation, motto_and_translation," .
-    "zip,favorite_drink) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust', '$experience', '$ijlMember', '$isHauling', '$stalls','$bio','$armour','$softKit','$portrait','$arms'," .
-    "'$themeMusic','$song','$artist','$start','$end','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip','$favDrink');";
+    "experience, ijl_member, hauling_horses, stalls_needed, bio, armour_photo, soft_kit_photo, soft_kit_mime, portrait_photo, portrait_mime," .
+    "arms_photo, arms_mime, theme_music, theme_mime, song, artist, start, end, height, weight, started_jousting, occupation, motto_and_translation," .
+    "zip,favorite_drink) values('$firstName','$lastName','$address','$city','$state','$country','$phone','$email','$skillAtArms', '$melee', '$joust'," .
+    "'$experience', '$ijlMember', '$isHauling', '$stalls','$bio','$armour','$armourMime','$softKit','$softKitMime','$portrait', '$portraitMime','$arms','$armsMime'," .
+    "'$themeMusic','$themeMusicMime','$song','$artist','$start','$end','$height','$weight','$dateStartedJousting', '$occupation', '$motto','$zip','$favDrink');";
 
     if (writeToDB($sql)) {
         emailApplicant($email);
@@ -175,11 +186,16 @@ function collectAndPrepareFiles() {
     $arms = $_FILES["armsPic"];
     $theme = $_FILES['themeMusic'];
 
-    $files['armour'] = prepareImageForDbInsert('armourPic', $armourPic, true);
-    $files['softKit'] = prepareImageForDbInsert('softKitPic', $softKitPic, true);
-    $files['portrait'] = prepareImageForDbInsert('closeUpPic', $portraitPic, true);
+    $files['armour']['img'] = prepareImageForDbInsert('armourPic', $armourPic, true);
+    $files['armour']['mime'] = $armourPic['type'];
+    $files['softKit']['img'] = prepareImageForDbInsert('softKitPic', $softKitPic, true);
+    $files['softKit']['mime'] = $softKitPic['type'];
+    $files['portrait']['img'] = prepareImageForDbInsert('closeUpPic', $portraitPic, true);
+    $files['portrait']['mime'] = $portraitPic['type'];
     $files['arms'] = prepareImageForDbInsert('armsPic', $arms, true);
-    $files['themeMusic'] = prepareImageForDbInsert('themeMusic', $theme, false);
+    $files['arms']['mime'] = $arms['type'];
+    $files['themeMusic']['img'] = prepareImageForDbInsert('themeMusic', $theme, false);
+    $files['themeMusic']['mime'] = $theme['type'];
 
     return $files;
 }
