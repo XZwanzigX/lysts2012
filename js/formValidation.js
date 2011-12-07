@@ -92,7 +92,7 @@ function validateTimes() {
 
 function validateFiles() {
     var validationErrors = '';
-    var fileRegEx = /([^\s]+\.(jpg|jpeg|png|gif)$)/;
+    var fileRegEx = /(\.(jpg|jpeg|png|gif)$)/;
     var mp3Regex = /(\.mp3$)/;
 
     var elements = document.getElementById('theForm').elements;
