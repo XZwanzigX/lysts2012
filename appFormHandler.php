@@ -247,7 +247,7 @@ function validateFile($file, $key) {
     $mimeType = $file['type'];
     $validateFile  = useLastYearInfo() ? $key == 'themeMusic' : true;
 
-    if ($validateFile && !preg_match('/((\.(jpg|jpeg|png|gif|mp3))$)/', $fileName)) {
+    if ($validateFile && !preg_match('/((\.(jpg|jpeg|png|gif|mp3))$)/i', $fileName)) {
         displayFormMessage("Invalid file sent");
     }
 

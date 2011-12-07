@@ -92,8 +92,8 @@ function validateTimes() {
 
 function validateFiles() {
     var validationErrors = '';
-    var fileRegEx = /(\.(jpg|jpeg|png|gif)$)/;
-    var mp3Regex = /(\.mp3$)/;
+    var fileRegEx = /(\.(jpg|jpeg|png|gif)$)/i;
+    var mp3Regex = /(\.mp3$)/i;
 
     var elements = document.getElementById('theForm').elements;
     var useLastYearInfo = document.getElementsByName('returningCompetitor')[0].checked;
