@@ -245,11 +245,11 @@ function validateTextFields() {
     }
 }
 
-function ensureACompetitionBoxIsChecked() {
+/*function ensureACompetitionBoxIsChecked() {
     if (!isset($_POST['saa']) && !isset($_POST['melee']) && !isset($_POST['joust'])) {
         displayFormMessage("Please select at least one event to compete in.");
     }
-}
+}*/
 
 
 function validateFiles() {
@@ -286,7 +286,7 @@ function displayFormMessage($message) {
 }
 
 validateTextFields();
-ensureACompetitionBoxIsChecked();
+//ensureACompetitionBoxIsChecked();
 validateFiles();
 insertDataInDb();
 
