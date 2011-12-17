@@ -53,7 +53,7 @@ function writeTableHeader() {
 }
 
 function writeRow($row, $i) {
-    $rowClass = $i % 2 ? "regularRow" : "shadedRow";
+    $rowClass = ($i % 2) == 0 ? "regularRow" : "shadedRow";
     echo "\t<tr class=\"" . $rowClass . "\">";
 
     foreach ($row as $key=>$value) {
