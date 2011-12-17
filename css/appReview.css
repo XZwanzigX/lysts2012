@@ -1,0 +1,18 @@
+
+.tableHeader {
+    font-family: arial,helvetica,sans-serif;
+    font-size:12pt;
+    font-weight: bold;
+}
+
+tr.regularRow  td {
+    background-color: #ffffff;
+    font-family: arial,helvetica,sans-serif;
+    font-size:12pt;
+}
+
+tr.shadedRow td {
+    background-color: #cccccc;
+    font-family: arial,helvetica,sans-serif;
+    font-size:12pt;
+}
