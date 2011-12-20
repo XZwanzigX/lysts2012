@@ -21,6 +21,7 @@ function passwordsCorrect() {
 function writeTableHeader() {
     echo "<table class='appTable'>\n";
     echo "\t<tr>\n";
+    echo "\t\t<td class=\"tableHeader\">&nbsp;</td>\n";
     echo "\t\t<td class=\"tableHeader\">First Name</td>\n";
     echo "\t\t<td class=\"tableHeader\">Last Name</td>\n";
     echo "\t\t<td class=\"tableHeader\">Address</td>\n";
@@ -55,6 +56,7 @@ function writeTableHeader() {
 function writeRow($row, $i) {
     $rowClass = ($i % 2) == 0 ? "regularRow" : "shadedRow";
     echo "\t<tr class=\"" . $rowClass . "\">";
+    echo "\t\t<td>" . ($i + 1) . "</td>\n";
 
     foreach ($row as $key=>$value) {
         $val = stripcslashes($value);
