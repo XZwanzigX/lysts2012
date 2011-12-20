@@ -50,6 +50,11 @@ function writeTableHeader() {
     echo "\t\t<td class=\"tableHeader\">Motto</td>\n";
     echo "\t\t<td class=\"tableHeader\">Favorite Drink</td>\n";
     echo "\t\t<td class=\"tableHeader\">Submission Date</td>\n";
+    echo "\t\t<td class=\"tableHeader\">Armour</td>\n";
+    echo "\t\t<td class=\"tableHeader\">Soft Kit</td>\n";
+    echo "\t\t<td class=\"tableHeader\">Close Up</td>\n";
+    echo "\t\t<td class=\"tableHeader\">Arms</td>\n";
+    echo "\t\t<td class=\"tableHeader\">Music</td>\n";
     echo "\t</tr>\n";
 }
 
@@ -73,6 +78,7 @@ function writeRow($row, $i) {
 
         echo "</td>\n";
     }
+
 
     echo "\t</tr>\n";
 }

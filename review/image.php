@@ -9,7 +9,7 @@ function pullItem($fields) {
 
     while ($row = mysql_fetch_array($results)) {
         header('Content-type: ' . $row[1]);
-        header('Content-Disposition: attachment; filename="' . $row[2] . '"');
+        header('Content-Disposition: attachment; filename="' . $row[2] . '_' . $_GET['pic'] . '"');
         echo($row[0]);
     }
 
