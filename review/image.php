@@ -23,7 +23,7 @@ if ($_GET['pic'] == 'armour') {
     $fields = 'soft_kit_photo,soft_kit_mime';
 } else if ($_GET['pic'] == 'portrait') {
     $fields = 'portrait_photo,portrait_mime';
-} else if ($_GET['pic'] == 'arms') {
+} else if ($_GET['pic'] == 'coatOfArms') {
     $fields = 'arms_photo,arms_mime';
 } else if ($_GET['pic'] == 'music') {
     $fields = 'theme_music,theme_mime';

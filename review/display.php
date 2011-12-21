@@ -65,18 +65,24 @@ function writeRow($row, $i) {
 
     foreach ($row as $key=>$value) {
         $val = stripcslashes($value);
-        echo "\t\t<td>";
+        if ('id' != $key) {echo "\t\t<td>"; }
+
         if (strpos('skill_at_arms,melee_a_cheval,joust,ijl_member,hauling_horses', $key) !== false) {
             echo $value == 1 ? "YES" : "NO";
         } elseif ('height' == $key) {
             echo preg_match('/Please use 2011\'s info/', $val) ? $val : str_replace('\\', "\"", $val);
         } elseif (strpos('started_jousting,weight', $key) !== false) {
             echo $val == '0' ? "Please use 2011's info." : $val;
-        } else {
+        } elseif (strpos('armour,softKit,portrait,coatOfArms', $key) !== false) {
+            echo $val == 0 ? "Use 2011's info." : '<a href="image.php?id=' . $row['id'] . '&pic=' . $key . '">link</a>';
+        } elseif ('music' == $key) {
+            echo $val == 0 ? '&nbsp;' : '<a href="image.php?id=' . $row['id'] . '&pic=music">link</a>';
+        }
+        else if ('id' != $key) {
             echo $val == '' ? "&nbsp;" : $val;
         }
 
-        echo "</td>\n";
+        if ('id' != $key){ echo "</td>\n"; }
     }
 
 
@@ -85,9 +91,10 @@ function writeRow($row, $i) {
 
 function displayApplications() {
     newReadConnection();
-    $sql = "select first_name, last_name, address, city, state, zip, country, phone, email, skill_at_arms, " .
+    $sql = "select id, first_name, last_name, address, city, state, zip, country, phone, email, skill_at_arms, " .
            "melee_a_cheval, joust, experience, ijl_member, hauling_horses, stalls_needed, bio, song, artist, " .
-           "start, end, height, weight, started_jousting, occupation, motto_and_translation, favorite_drink, submission_date " .
+           "start, end, height, weight, started_jousting, occupation, motto_and_translation, favorite_drink, submission_date, " .
+           "length(armour_photo) armour, length(soft_kit_photo) softKit, length(portrait_photo) portrait, length(arms_photo) coatOfArms, length(theme_music) music " .
            "from application_2012";
     $result = mysql_query($sql);
 
