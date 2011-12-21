@@ -5,7 +5,10 @@
     </head>
 
     <body>
-       <div align = "center"> <a href="export.php">Export to CSV</a> </div>
+    <?php if (passwordsCorrect()) {
+        echo '<div align = "center"> <a href="export.php">Export to CSV</a> </div>';
+    }?>
+
 <?php
 include('../../db/dbConnection.php');
 
