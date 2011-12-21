@@ -17,10 +17,10 @@ function exportCsv() {
     $result = mysql_query($sql);
 
     $csv = writeHeader();
-    $i = 0;
+    $i = 1;
     while ($row = mysql_fetch_assoc($result)) {
         $data = writeRow($row, $i);
-        $csv = $csv . substr($data, 0, strlen($data) - 1) . '\n';
+        $csv = $csv . substr($data, 0, strlen($data) - 1) . "\n";
         ++$i;
     }
     mysql_close();
