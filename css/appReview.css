@@ -17,3 +17,144 @@ tr.shadedRow td {
     font-family: arial,helvetica,sans-serif;
     font-size:12pt;
 }
+
+.first_nameContent {
+    width: 200px;
+    text-align:center;
+    background-color: #00FF00;
+}
+
+.last_nameContent {
+    width: 100px;
+    text-align:center;
+}
+
+.addressContent {
+    width: 100px;
+    text-align:center;
+}
+
+.cityContent {
+    width: 100px;
+    text-align:center;
+}
+
+.stateContent {
+    width: 100px;
+    text-align:center;
+}
+
+.zipContent {
+    width: 100px;
+    text-align:center;
+}
+
+.countryContent {
+    width: 100px;
+    text-align:center;
+}
+
+.phoneContent {
+    width: 100px;
+    text-align:center;
+}
+
+.emailContent {
+    width: 100px;
+    text-align:center;
+}
+
+.submission_dateContent {
+    width: 100px;
+    text-align:center;
+}
+
+.songContent {
+    width: 100px;
+    text-align:center;
+}
+
+.artistContent {
+    width: 100px;
+    text-align:center;
+}
+
+.startContent{
+    width: 100px;
+    text-align:center;
+}
+
+.endContent{
+    width: 100px;
+    text-align:center;
+}
+
+.heightContent{
+    width: 100px;
+    text-align:center;
+}
+
+.weightContent {
+    width: 100px;
+    text-align:center;
+}
+
+.started_joustingContent{
+    width: 100px;
+    text-align:center;
+}
+
+.occupationContent{
+    width: 100px;
+    text-align:center;
+}
+
+.favorite_drinkContent {
+    width: 100px;
+    text-align:center;
+}
+
+.skill_at_armsContent {
+    width: 50px;
+    text-align:center;
+}
+
+.melee_a_chevalContent {
+    width: 50px;
+    text-align:center;
+}
+
+.joustContent {
+    width: 50px;
+    text-align:center;
+}
+
+.ijl_memberContent {
+    width: 50px;
+    text-align:center;
+}
+
+.hauling_horsesContent {
+    width: 50px;
+    text-align:center;
+}
+
+.stalls_neededContent {
+    width: 50px;
+    text-align:center;
+}
+
+.experienceContent {
+    width: 500px;
+    text-align:center;
+}
+
+.bioContent {
+    width: 500px;
+    text-align:center;
+}
+
+.motto_and_translationContent {
+    width: 200px;
+    text-align:center;
+}

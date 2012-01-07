@@ -23,7 +23,7 @@ function passwordsCorrect() {
 }
 
 function writeTableHeader() {
-    echo "<table class='appTable'>\n";
+    echo "<table>\n";
     echo "\t<tr>\n";
     echo "\t\t<td class=\"tableHeader\">&nbsp;</td>\n";
     echo "\t\t<td class=\"tableHeader\">First Name</td>\n";
@@ -64,12 +64,13 @@ function writeTableHeader() {
 
 function writeRow($row, $i) {
     $rowClass = ($i % 2) == 0 ? "regularRow" : "shadedRow";
-    echo "\t<tr class=\"" . $rowClass . "\">";
+    echo "\t<tr class=\"" . $rowClass . "\">\n";
     echo "\t\t<td>" . ($i + 1) . "</td>\n";
 
     foreach ($row as $key=>$value) {
         $val = stripcslashes($value);
-        if ('id' != $key) {echo "\t\t<td>"; }
+
+        if ('id' != $key) {echo "\t\t<td class=\"". $key . "Content\">"; }
 
         if (strpos('skill_at_arms,melee_a_cheval,joust,ijl_member,hauling_horses', $key) !== false) {
             echo $value == 1 ? "YES" : "NO";
@@ -89,7 +90,6 @@ function writeRow($row, $i) {
         if ('id' != $key){ echo "</td>\n"; }
     }
 
-
     echo "\t</tr>\n";
 }
 
@@ -108,6 +108,8 @@ function displayApplications() {
         writeRow($row, $i);
         ++$i;
     }
+
+    echo "\t</table>";
     mysql_close();
 }
 
