@@ -1,0 +1,34 @@
+/*.osX .jScrollPaneTrack {*/
+            /*background: url(images/osx_track.gif) repeat-y;*/
+/*}*/
+
+/*.osX .jScrollPaneDrag {*/
+            /*background: url(images/osx_drag_middle.gif) repeat-y;*/
+/*}*/
+
+/*.osX .jScrollPaneDragTop {*/
+            /*background: url(images/osx_drag_top.gif) no-repeat;*/
+            /*height: 6px;*/
+/*}*/
+
+/*.osX .jScrollPaneDragBottom {*/
+       /*background: url(images/osx_drag_bottom.gif) no-repeat;*/
+            /*height: 7px;*/
+/*}*/
+.winnerPane .regularBodyText a.jScrollArrowUp {
+            height: 26px;
+            background: url(../img/scroll/upArrow.png) no-repeat 0 -30px;
+}
+
+.winnerPane .regularBodyText a.jScrollArrowUp:hover {
+    background-position: 0 0;
+}
+
+.winnerPane .regularBodyText a.jScrollArrowDown {
+    height: 26px;
+    background: url(../img/scroll/downArrow.png) no-repeat 0 -30px;
+}
+
+.winnerPane .regularBodyText a.jScrollArrowDown:hover {
+    background-position: 0 0;
+}
