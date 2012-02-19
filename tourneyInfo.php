@@ -21,7 +21,7 @@
                 <li class="listItem">All requirements (listed below) must be submitted no later than Monday, March 5, 2012.  Remember that the roster will be determined by the order in which all the requirements are fulfilled so do not wait until the last minute or you will likely not receive a spot on the roster.
             </ul>
 
-            <p class="bodyText"><i>Lysts on the Lake</i> is located at <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=7400+Coldwater+Canyon+Drive,+Austin,+TX&sll=37.0625,-95.677068&sspn=51.355924,114.169922&ie=UTF8&hq=&hnear=7400+Coldwater+Canyon+Dr,+Austin,+Travis,+Texas+78730&z=17&iwloc=A" class="link">7400 Coldwater Canyon Rd., Austin, Texas</a>.
+            <p class="bodyText"><i>Lysts on the Lake</i> is located at <a href="http://maps.google.com/maps?q=210+Carlos+G+Parker+Blvd+NW,+Taylor,+TX&hl=en&sll=37.0625,-95.677068&sspn=59.597077,135.263672&hnear=210+Carlos+G+Parker+Blvd+NW,+Taylor,+Texas+76574&t=h&z=17&iwloc=A" class="link" target="_new">210 Carlos G Parker Blvd NW, Taylor, TX</a>.
 
             <p class="bodyText"><i>Lysts on the Lake</i> consists of 3 equestrian events over 3 days:
             <ul>

@@ -30,9 +30,7 @@
                     <li class="listItemHome">the competitor who displays the highest ideals of Chivalry</li>
                     <li class="listItemHome">the overall Tournament Champion</li>
                 </ul>
-                <p class="homeText"><a href="http://www.texasjoust.com" class="smallLystsLink">Lysts on the Lake</a> is generously hosted by award-winning computer game developer, entrepreneur, philanthropist and space explorer,
-                    <a href="http://www.richardgarriott.com/biography/" class="richardLink">Richard Garriott</a> and is held on his private estate in Austin, Texas within the "<a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=7400+Coldwater+Canyon+Drive,+Austin,+TX&sll=32.850658,-96.804549&sspn=3.437541,7.13562&ie=UTF8&hq=&hnear=7400+Coldwater+Canyon+Dr,+Austin,+Travis,+Texas+78730&z=17" class="castletonLink">Village of Castleton</a>"... a picturesque, medieval inspired village located on the shores of Lake Austin.
-                </p>
+
                 <p><iframe width="560" height="315" src="http://www.youtube.com/embed/UYhdz1bPTAE" frameborder="0" allowfullscreen></iframe> </p>
                 <p>&nbsp;</p>
             </div>
