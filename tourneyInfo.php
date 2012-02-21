@@ -173,9 +173,9 @@
                 <li class="listItem">once received, sign the competitor's packet and waiver agreement and return it to the Tournament Producer by March 5, 2012</li>
                 <li class="listItem">provide your own horse and equipment.  The Tournament Producer will not provide horses for this event except in specific situations (i.e. for international competitors).  However, you are free to make personal arrangements for a mount if you wish</li>
                 <li class="listItem">participate in the joust (participants who are not interested in competing in the joust are still encouraged to participate in the other events but will not be eligible for the travel stipend)</li>
-                <li class="listItem">arrive at the event site by 5:00p Central Time on Monday April 30, 2012 (if you would like to arrive earlier, please contact the Tournament Producer for details)</li>
-                <li class="listItem">participate in practice days (dates tbd)</li>
-                <li class="listItem">attend all 3 days of the public event (May 4, 5, 6, 2012)</li>
+                <li class="listItem">arrive at the event site by 5:00p Central Time on Wednesday May 9, 2012 (if you would like to arrive earlier, please contact the Tournament Producer for details)</li>
+                <li class="listItem">participate in practice days (May 9-11, 2012)</li>
+                <li class="listItem">attend all 3 days of the public event (May 11, 12 and 13, 2012)</li>
                 <li class="listItem">provide a 3' x 3' banner with their arms</li>
                 <li class="listItem">provide a caparison for their horse</li>
                 <li class="listItem">provide a properly strapped, wooden, "ecranche" style shield (~13"x14")</li>
