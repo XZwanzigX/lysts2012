@@ -20,8 +20,8 @@ function insertRow() {
         }
         $stmt->close();
         $cxn->close();
-        mail('webmaster@aplaisance.com', 'Lysts Meal Plan registration', 'Meal plan registration for ' . $_POST['first_name'] . ' ' . $_POST['last_name']);
-        mail('steve@aplaisance.com', 'Lysts Meal Plan registration', 'Meal plan registration for ' . $_POST['first_name'] . ' ' . $_POST['last_name']);
+        mail('webmaster@aplaisance.com', 'Lysts Meal Plan registration', 'Meal plan registration for ' . $_POST['first_name'] . ' ' . $_POST['last_name'] . '(' . $_POST['email'] . ')');
+        mail('steve@aplaisance.com', 'Lysts Meal Plan registration', 'Meal plan registration for ' . $_POST['first_name'] . ' ' . $_POST['last_name']  . '(' . $_POST['email'] . ')');
         return true;
     }
     
