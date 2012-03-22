@@ -3,7 +3,7 @@ include('../db/cmaiDb.php');
 
 function dbCOnn() {
 //    return localConnection();
-    return cmai();
+    return conn();
 }
 function mailToCustomer($email) {
     $subject = 'Thank you for your payment for CMAI!';
@@ -44,7 +44,7 @@ function processPayment() {
 }
 
 function updateRegistrantWithPayment($emailExists, $isPaid) {
-    $sql = "update cmai_registrant set paid=?, paypal_txn=? where ";
+    $sql = "update lysts_meal set paid=?, paypal_txn=? where ";
 
     if ($emailExists ) {
          $where = 'email=?';
@@ -66,7 +66,7 @@ function updateRegistrantWithPayment($emailExists, $isPaid) {
 function checkIfRecordExists($record, $paramType, $param)
 {
     $conn = dbCOnn();
-    $sql = "select {$record} from cmai_registrant where {$record}=?";
+    $sql = "select {$record} from lysts_meal where {$record}=?";
 
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param($paramType, $param);

@@ -20,6 +20,8 @@ function insertRow() {
         }
         $stmt->close();
         $cxn->close();
+        mail('webmaster@aplaisance.com', 'Lysts Meal Plan registration', 'Meal plan registration for ' . $_POST['first_name'] . ' ' . $_POST['last_name']);
+        mail('steve@aplaisance.com', 'Lysts Meal Plan registration', 'Meal plan registration for ' . $_POST['first_name'] . ' ' . $_POST['last_name']);
         return true;
     }
     
@@ -43,6 +45,7 @@ function insertRow() {
                 <?php 
                     if (insertRow()) {
                         echo '<p>Thank you for ordering the Lysts on the Lake meal plan.  In order for your order to be complete, Please click the paypal button below.</p>';
+                        include('button/button.htm');
                     } else {
                         mail('webmaster@aplaisance.com', 'Meal plan registration failure', 'Problem processing meal plan registration.  Post data:' . implode(',', $_POST));
                         echo "<p>We're sorry, a problem occurred processing your meal plan registration.  The webmaster has been notified. </p>";

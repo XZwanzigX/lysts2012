@@ -9,6 +9,7 @@
     <div id="contentPane" class="contentPane">
         <?php include('nav.php');?>
         <div class="innerContent">
+            <p>Please fill out the form below to purchase the competitor meal plan for Lysts on the Lake.  The cost for the plan is $135 and includes Dinner on Wednesday night and Breakfast, Lunch and Dinner from Thursday through Sunday.</p>
             <form name="mealForm" method="post" action="mealProcess.php">
                 <!-- Name -->
                 <p class="entry">
