@@ -1,5 +1,5 @@
-d<?php
-include('../db/cmaiDb.php');
+<?php
+include('../db/dbConnection.php');
 
 function dbCOnn() {
 //    return localConnection();
